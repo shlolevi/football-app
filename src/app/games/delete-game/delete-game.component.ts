@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material';
 
 @Component({
   selector: 'app-delete-game',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteGameComponent implements OnInit {
 
-  constructor() { }
+  formGroup: FormGroup;
+  post: any = '';
+  games: any[] = [{name:'Boots', id:1}, {name:'Sneakers', id:3},{name:'Moccasins', id:4},{name:'Loafers', id:5},{name:'Clogs', id:6}];
+
+  
+  constructor(private formBuilder: FormBuilder){
+   }
 
   ngOnInit() {
+    this.createForm();
+
   }
 
+  createForm() {
+    this.formGroup = this.formBuilder.group({
+      'numOfPlayers': new FormControl(null, Validators.required),
+    });
+  }
+
+  onSubmit(post) {
+    this.post = post;
+  }
+
+  deleteGame(id){
+    console.log(`delete game: ${id}`);
+  }
 }

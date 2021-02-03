@@ -4,9 +4,10 @@ import { Routes } from '@angular/router';
 import { AddPlayerComponent } from './add-player/add-player.component';
 import { DeletePlayerComponent } from './delete-player/delete-player.component';
 import { PlayersComponent } from './players.component';
+import { PlayerListComponent } from './player-list/player-list.component';
 
 
-export const playerRoutes: Routes = [
+export const playersRoutes: Routes = [
   {
       path: '',
       component: PlayersComponent,
@@ -22,7 +23,11 @@ export const playerRoutes: Routes = [
           {
             path: 'delete',
             component: DeletePlayerComponent
-        }
+          },
+          {
+            path: 'list',
+            component: PlayerListComponent
+          }
       ]
   }
 

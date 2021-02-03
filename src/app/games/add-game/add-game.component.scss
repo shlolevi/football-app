@@ -1,0 +1,15 @@
+::ng-deep 
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background: rgba(63, 81, 181, .9);
+}
+
+::ng-deep  .timepicker{
+    direction: ltr;
+}
+::ng-deep .timepicker__header{
+    background-color: rgba(63, 81, 181, .9) !important;
+
+}
+.mat-form-field{
+    display: block !important;
+}

@@ -1,2 +1,7 @@
 
-  
+    ::ng-deep mat-card{
+        text-align: center;
+    }
+    ::ng-deep .mat-card{
+        max-width: 450px;
+    }

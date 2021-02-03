@@ -1,1 +1,25 @@
-<p>delete-game works!</p>
+<mat-toolbar color="primary">
+  <img src="assets/icons/new-game.svg" height="50" aria-label="add player"/>
+
+  <span class="fill-remaining-space">מחק משחק</span> 
+</mat-toolbar>
+
+<div class="container"> 
+
+<mat-card class="game-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>רשימת משחקים</mat-card-title>
+    <mat-card-subtitle>בחר משחק מן הרשימה למחיקה</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="assets/football-game.jpg" alt="football game">
+  <mat-card-content>
+    <div class="form-element">
+        <div *ngFor="let game of games" class="game">
+          <div class="cta"><mat-icon (click)=deleteGame(game.id)>delete</mat-icon></div> <div>{{game.name}} </div>
+        </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+</div>
