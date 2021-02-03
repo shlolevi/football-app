@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "api-project-603056877137": {
+      "hosting": {
+        "football-app": [
+          "api-project-603056877137"
+        ]
+      }
+    }
+  }
+}

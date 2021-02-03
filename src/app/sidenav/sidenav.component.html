@@ -1,0 +1,11 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav [mode]="'push'">
+    <p>
+     sidebar data 
+    </p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p><button mat-button (click)="sidenav.toggle()"><mat-icon>list</mat-icon></button></p>
+  </mat-sidenav-content>
+</mat-sidenav-container>

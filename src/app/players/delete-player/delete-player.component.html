@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <!--mat-icon aria-hidden="false" aria-label="Example home icon">sports_handball
+</mat-icon-->
+  <img src="../assets/icons/football-player.svg" height="50" aria-label="add player"/>
+
+  <span class="fill-remaining-space">מחיקת שחקן</span> 
+</mat-toolbar>
+
+<div class="container" *ngIf="!post; else forminfo" novalidate> 
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+
+
+    <mat-form-field class="form-element"> 
+    <mat-label>שם שחקן</mat-label>
+    <input type="text"
+           placeholder="בחר שחקן"
+           aria-label="שם שחקן"
+           matInput
+           formControlName="player"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">שמור</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #forminfo>
+  <div class="container">
+    {{ post | json }}
+  </div>
+</ng-template>  

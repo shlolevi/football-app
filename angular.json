@@ -122,8 +122,13 @@
               "devServerTarget": "football-app:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "football-app"
 }
