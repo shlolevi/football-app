@@ -1,0 +1,34 @@
+::ng-deep .mat-card-image{
+    object-fit: cover; /*this makes the image in src fit to the size specified below*/
+    width: calc(90%) !important; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  }
+
+  .gamePlayers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:50px;
+  }
+
+  .players, .waiting{
+    background-color: #62b3ec;
+    min-height:200px;
+    border-radius: 5px;
+    height: 150px;
+    grid-gap:20px;
+    overflow-y: auto;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .playersList{
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+    text-align: right;
+  }
+.players-title, .waiting-title{
+color:#0866a8;
+}
+  mat-card-content{
+    width: 90%;
+
+  }

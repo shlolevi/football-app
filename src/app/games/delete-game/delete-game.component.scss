@@ -1,7 +1,7 @@
 .game{
     display: grid;
-    grid-template-columns:  20px 1fr;
-
+    grid-template-columns: 30px 30px 1fr;
+    grid-gap: 10px;;
     direction: ltr;
     text-align:right;
 }
@@ -9,4 +9,7 @@
 ::ng-deep .mat-card{
     max-width: 450px;
 }
-
+::ng-deep .mat-card-content{
+    max-height: 250px;
+    overflow-y: auto;
+}

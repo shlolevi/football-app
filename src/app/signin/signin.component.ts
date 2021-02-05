@@ -13,6 +13,7 @@ export class SigninComponent implements OnInit {
 
   error: string;
   userForm: any;
+  post: any = '';
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -24,7 +25,7 @@ export class SigninComponent implements OnInit {
       password: ['', [Validators.required]]
     });
   }
-  onSubmit() {
+  onSubmit(form) {
     console.log(this.userForm.value)
 
     // this.authService.signInUser(this.userForm.value.email, this.userForm.value.password)

@@ -13,3 +13,11 @@
 .mat-form-field{
     display: block !important;
 }
+
+::ng-deep .mat-card-content{
+    max-height: 350px;
+    overflow-y: auto;
+}
+mat-form-field{
+    padding-bottom: 0 !important;
+  }

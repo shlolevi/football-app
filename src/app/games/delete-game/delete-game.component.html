@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <img src="assets/icons/new-game.svg" height="50" aria-label="add player"/>
 
-  <span class="fill-remaining-space">מחק משחק</span> 
+  <span class="fill-remaining-space">רשימת משחקים</span> 
 </mat-toolbar>
 
 <div class="container"> 
@@ -10,16 +10,22 @@
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>רשימת משחקים</mat-card-title>
-    <mat-card-subtitle>בחר משחק מן הרשימה למחיקה</mat-card-subtitle>
+    <mat-card-subtitle> בחר משחק מן הרשימה למחיקה או נהל משחק</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="assets/football-game.jpg" alt="football game">
   <mat-card-content>
     <div class="form-element">
         <div *ngFor="let game of games" class="game">
-          <div class="cta"><mat-icon (click)=deleteGame(game.id)>delete</mat-icon></div> <div>{{game.name}} </div>
+          <div class="cta"><mat-icon (click)=deleteGame(game.id)>delete</mat-icon></div>
+          <div class="cta"><mat-icon (click)=navToGameInfo(game.id)>info</mat-icon></div>
+          <div>{{game.name}} </div>
         </div>
     </div>
   </mat-card-content>
 </mat-card>
 
+    <div class="form-element">
+      <button mat-raised-button color="primary" (click)="navToNewGame()" class="button" >הוסף משחק חדש</button>
+    </div>
+    
 </div>

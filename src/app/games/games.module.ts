@@ -8,11 +8,13 @@ import { gamesRoutes } from './games-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { ManagedGameComponent } from './managed-game/managed-game.component';
+import { CreateGroupsComponent } from './create-groups/create-groups.component';
 
 
 
 @NgModule({
-  declarations: [AddGameComponent, DeleteGameComponent, GamesComponent],
+  declarations: [AddGameComponent, DeleteGameComponent, GamesComponent, ManagedGameComponent, CreateGroupsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(gamesRoutes),

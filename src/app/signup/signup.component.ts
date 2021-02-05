@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 export class SignupComponent implements OnInit {
   userForm: any;
   error: string;
+  post: any = '';
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService ) { 
     this.error = null; }
@@ -17,14 +18,14 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
-      lastName: ['',[Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      firstName: ['', [Validators.required]],
+      lastName: ['',[Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
   }
 
-  onSignUp() {
+  onSignUp(form) {
     console.log(this.userForm.value)
     // this.authService.signUpUser(this.userForm.value.email, this.userForm.value.password)
     //   .then( res => console.log(res) )

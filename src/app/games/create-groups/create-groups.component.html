@@ -1,0 +1,67 @@
+<mat-toolbar color="primary">
+  <img src="assets/icons/new-game.svg" height="50" aria-label="add player"/>
+
+  <span class="fill-remaining-space">צור קבוצות</span> 
+</mat-toolbar>
+
+<div class="container" *ngIf="!post; else forminfo" novalidate> 
+<mat-card class="player-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>צור קבוצות</mat-card-title>
+    <mat-card-subtitle> לחץ ליצירת קבוצות מאוזנות ולהגרלת סדר משחקים</mat-card-subtitle>
+  </mat-card-header>
+    <img mat-card-image src="assets/teams-list.jpg" width="150" alt="delete player">
+  <mat-card-content>
+
+<!--form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+
+<div class="form-element">
+    <mat-label class="cLabel">תאריך משחק</mat-label>
+        21/03/2021 יום ג
+</div>
+ <div class="form-element">
+    <mat-label class="cLabel">שעת משחק</mat-label>
+        12:30
+</div>
+ <div class="form-element">
+    <mat-label class="cLabel">מספר שחקנים</mat-label>
+        20
+</div>
+
+    <mat-form-field class="form-element"> 
+    <mat-label>שם שחקן</mat-label>
+    <input type="text"
+           placeholder="בחר שחקן"
+           aria-label="שם שחקן"
+           matInput
+           formControlName="player"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  
+    <div class="form-element buttons">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">הוסף</button>
+      <button mat-raised-button color="primary" (click)="navToCreateGroups()"  class="button" >צור קבוצות</button>
+    </div>
+
+
+  </form-->
+
+
+
+  </mat-card-content>
+</mat-card>
+
+  
+</div>
+
+<ng-template #forminfo>
+  <div class="container">
+    {{ post | json }}
+  </div>
+</ng-template>  

@@ -1,10 +1,9 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
+<!--form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
 
   <p class="h4 mb-4">Sign in</p>
 
   
 <div class="form-row mb-4">
-  <input type="email" formControlName="email" id="email" class="form-control mb-4" placeholder="E-mail">
 </div>
 
 <div class="form-row mb-4">  
@@ -17,4 +16,52 @@
 
   <hr>
 
-</form>
+</form-->
+
+
+
+
+
+<mat-toolbar color="primary">
+  <img src="assets/icons/football-player.svg" height="50" aria-label="add player"/>
+
+  <span class="fill-remaining-space">כניסה למערכת</span> 
+</mat-toolbar>
+
+<div class="container" *ngIf="!post; else forminfo" novalidate> 
+<mat-card class="signin-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title> כניסה למערכת</mat-card-title>
+    <mat-card-subtitle> הכנס אימייל וסיסמא</mat-card-subtitle>
+  </mat-card-header>
+    <img mat-card-image src="assets/football-login.jpg" width="150" alt="delete player">
+  <mat-card-content>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)" class="form">
+    <mat-form-field class="form-element"> 
+  <mat-label>כתובת אימייל</mat-label>
+      <input matInput type="email" placeholder="כתובת אימייל" formControlName="email" id="email" >
+  </mat-form-field>
+
+    <mat-form-field class="form-element"> 
+  <mat-label>סיסמא</mat-label>
+    <input matInput type="password" placeholder=" סיסמא" formControlName="password" id="password" >
+  </mat-form-field>
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!userForm.valid">היכנס</button>
+    </div>
+    <div class="form-element">
+      <button mat-raised-button color="primary" [routerLink]="'/signup'" class="btn btn-primary button">צור חשבון ?</button>
+    </div>
+  </form>
+  </mat-card-content>
+</mat-card>
+
+</div>
+
+<ng-template #forminfo>
+  <div class="container">
+    {{ post | json }}
+  </div>
+</ng-template>  

@@ -1,4 +1,4 @@
-<form [formGroup]="userForm" (ngSubmit)="onSignUp()" class="text-center border border-light p-5">
+<!--form [formGroup]="userForm" (ngSubmit)="onSignUp()" class="text-center border border-light p-5">
 
   <p class="h4 mb-4">Sign up</p>
 
@@ -24,4 +24,59 @@
 
   <hr>
 
-</form>
+</form-->
+
+
+<mat-toolbar color="primary">
+  <img src="assets/icons/football-player.svg" height="50" aria-label="add player"/>
+
+  <span class="fill-remaining-space">הירשם למערכת</span> 
+</mat-toolbar>
+
+<div class="container" *ngIf="!post; else forminfo" novalidate> 
+<mat-card class="signin-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title> הירשם למערכת</mat-card-title>
+    <mat-card-subtitle> הכנס שם פרטי, שם משפחה, אימייל וסיסמא</mat-card-subtitle>
+  </mat-card-header>
+    <img mat-card-image src="assets/football-register.png" width="150" alt="הירשם למערכת">
+  <mat-card-content>
+
+<form [formGroup]="userForm" (ngSubmit)="onSignUp(userForm.value)" class="form">
+    <mat-form-field class="form-element"> 
+  <mat-label>שם פרטי</mat-label>
+      <input matInput type="firstName" placeholder="שם פרטי" formControlName="firstName" id="firstName" >
+  </mat-form-field>
+
+    <mat-form-field class="form-element"> 
+  <mat-label>שם משפחה</mat-label>
+    <input matInput type="lastName" placeholder=" שם משפחה" formControlName="lastName" id="lastName" >
+  </mat-form-field>
+ <mat-form-field class="form-element"> 
+  <mat-label>כתובת אימייל</mat-label>
+      <input matInput type="email" placeholder="כתובת אימייל" formControlName="email" id="email" >
+  </mat-form-field>
+
+    <mat-form-field class="form-element"> 
+  <mat-label>סיסמא</mat-label>
+    <input matInput type="password" placeholder=" סיסמא" formControlName="password" id="password" >
+  </mat-form-field>
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!userForm.valid">היכנס</button>
+    </div>
+    <div class="form-element">
+      <button mat-raised-button color="primary" [routerLink]="'/signin'" class="btn btn-primary button">צור חשבון ?</button>
+    </div>
+        
+  </form>
+  </mat-card-content>
+</mat-card>
+
+</div>
+
+<ng-template #forminfo>
+  <div class="container">
+    {{ post | json }}
+  </div>
+</ng-template>  

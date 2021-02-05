@@ -18,7 +18,6 @@ export class AddGameComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-
   }
 
   createForm() {
@@ -29,8 +28,15 @@ export class AddGameComponent implements OnInit {
     });
   }
 
+  get numOfPlayers() {
+    return this.formGroup.get('numOfPlayers');
+ }
   onSubmit(post) {
+    if (this.formGroup.invalid) {
+      return;
+   }
     this.post = post;
+    // this.formGroup.reset();
   }
 
 }

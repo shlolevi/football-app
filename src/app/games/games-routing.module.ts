@@ -4,6 +4,8 @@ import { AddGameComponent } from './add-game/add-game.component';
 import { DeleteGameComponent } from './delete-game/delete-game.component';
 import { GamesComponent } from './games.component';
 import { Routes } from '@angular/router';
+import { ManagedGameComponent } from './managed-game/managed-game.component';
+import { CreateGroupsComponent } from './create-groups/create-groups.component';
 
 export const gamesRoutes: Routes = [
   {
@@ -21,7 +23,15 @@ export const gamesRoutes: Routes = [
           {
             path: 'delete',
             component: DeleteGameComponent
-        }
+          },
+          {
+            path: 'manage',
+            component: ManagedGameComponent
+          },
+          {
+            path: 'groups',
+            component: CreateGroupsComponent
+          }
       ]
   }
 

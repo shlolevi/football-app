@@ -10,3 +10,15 @@
     max-width: 450px;
 }
 
+::ng-deep .mat-card-content{
+    max-height: 350px;
+    overflow-y: auto;
+    padding: 15px;
+}
+.players-title {
+
+}
+
+ button.button.mat-raised-button.mat-button-base.mat-primary{
+    margin-top:15px!important;
+}
