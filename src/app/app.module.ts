@@ -22,6 +22,8 @@ import { GamesModule } from './games/games.module';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { MaterialModule } from './material/material.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -42,7 +44,7 @@ import { MaterialModule } from './material/material.module';
     GamesModule,
     BrowserAnimationsModule,
     ReactiveFormsModule, FormsModule, 
-    MaterialModule
+    MaterialModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
