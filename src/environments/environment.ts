@@ -7,6 +7,7 @@ export const environment = {
   firebaseConfig: {
     apiKey: "AIzaSyCJR4xstgsUb-ulHUma9BOqK3zmNJvTeUU",
     authDomain: "football-4a884.firebaseapp.com",
+    databaseURL: "https://football-4a884-default-rtdb.firebaseio.com",
     projectId: "football-4a884",
     storageBucket: "football-4a884.appspot.com",
     messagingSenderId: "955816259519",

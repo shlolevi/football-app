@@ -1,0 +1,28 @@
+.buttons, .userImage{
+    text-align: center;
+}
+
+.upload {
+    display:none;
+}
+
+.userImage img {
+    border-radius: 50px;
+    height: 90px;
+
+    
+}
+.userImage button{
+    width:30%;
+    padding: 0 5px;
+ }
+
+ :host ::ng-deep {
+    mat-card.signin-card.mat-card{
+        text-align: center;
+     }
+     img.mat-card-image {
+         width:150px !important;
+     }
+ }
+

@@ -15,17 +15,23 @@
   <img mat-card-image src="assets/football-game.jpg" alt="football game">
   <mat-card-content>
     <div class="form-element">
-        <div *ngFor="let game of games" class="game">
-          <div class="cta"><mat-icon (click)=deleteGame(game.id)>delete</mat-icon></div>
+        <div *ngFor="let game of gList; index as i" class="game">
+          <div class="cta"><mat-icon (click)=deleteGame(game.id) *ngIf="user.role ==='Admin'">delete</mat-icon></div>
           <div class="cta"><mat-icon (click)=navToGameInfo(game.id)>info</mat-icon></div>
-          <div>{{game.name}} </div>
+          <!--div>  {{game.gameTime}} שעה: {{game.numOfPlayers}}מספר שחקנים: - {{i+1}}</div-->
+          <div class="gamelink"> {{game.gameTime}} {{game.date.seconds}} - {{i+1}}</div>
+
         </div>
     </div>
   </mat-card-content>
 </mat-card>
 
     <div class="form-element">
-      <button mat-raised-button color="primary" (click)="navToNewGame()" class="button" >הוסף משחק חדש</button>
+      <button mat-raised-button color="primary" (click)="navToNewGame()" class="button" *ngIf="user.role ==='Admin'" >הוסף משחק חדש</button>
     </div>
     
+
+    <!--div *ngIf="afAuth.user | async as user">
+        {{user.uid}}
+    </div-->
 </div>

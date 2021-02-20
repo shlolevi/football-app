@@ -63,6 +63,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
  .cta{
    cursor: pointer;
  }
+ .cta-button{
+  @media screen and (max-width: 462px) {  
+    width: 100%;
+  }
+  width: 47%;
+  margin: 5px !important
+}
+
 
  .error{
    color: red;
@@ -74,3 +82,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
    font-size:0.9em;
  }
 
+.mt-15{
+  margin-top:15px;
+}

@@ -51,13 +51,113 @@
 
 
   </form-->
+  <div class="groups">
+    <!--mat-card class="inner-mat-card">קבוצה 1</mat-card-->
 
+   
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        קבוצה 1
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>שלומי</p>
+    <p>אלי</p>
+    <p>איציק</p>
+    <p>אוהד</p>
+    <p>עידן</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        קבוצה 2
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>שלומי</p>
+    <p>אלי</p>
+    <p>איציק</p>
+    <p>אוהד</p>
+    <p>עידן</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        קבוצה 3
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>שלומי</p>
+    <p>אלי</p>
+    <p>איציק</p>
+    <p>אוהד</p>
+    <p>עידן</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        קבוצה 4
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>שלומי</p>
+    <p>אלי</p>
+    <p>איציק</p>
+    <p>אוהד</p>
+    <p>עידן</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        קבוצה 5
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <p>שלומי</p>
+    <p>אלי</p>
+    <p>איציק</p>
+    <p>אוהד</p>
+    <p>עידן</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+  </div>
+
+    <div class="form-element btns" >
+      <button mat-raised-button color="primary" (click)="playingOrder()" class="btn btn-primary button cta-button">הגרל איזה קבוצה תשחק קודם....</button>
+      <button mat-raised-button color="primary" (click)="back()" class="btn btn-primary button cta-button">חזור</button>
+    </div>
+    
+
+<div class="playingOrderContainer">
+    <mat-card class="inner-mat-card playingOrder" *ngIf="displayPlayingOrder">
+    <h4>הקבוצות ישחקו לפי הסדר הבא</h4>
+    <p>4</p>
+     <p>3</p>
+      <p>2</p>
+       <p>1</p>
+        <p>5</p>
+    </mat-card>
+</div>
 
 
   </mat-card-content>
 </mat-card>
-
-  
 </div>
 
 <ng-template #forminfo>

@@ -1,22 +1,23 @@
 .player{
     display: grid;
-    grid-template-columns:  20px 1fr;
-
+    grid-template-columns:  20px 1fr 20px;
+    margin: 7px 0;
     direction: ltr;
     text-align:right;
 }
 
-::ng-deep .mat-card{
-    max-width: 450px;
+:host ::ng-deep{
+     .mat-card{
+        max-width: 450px;
+     }
 }
 
-::ng-deep .mat-card-content{
-    max-height: 350px;
-    overflow-y: auto;
-    padding: 15px;
-}
-.players-title {
-
+:host ::ng-deep{
+     .mat-card-content{
+        max-height: 350px;
+        overflow-y: auto;
+        padding: 15px;
+     }
 }
 
  button.button.mat-raised-button.mat-button-base.mat-primary{

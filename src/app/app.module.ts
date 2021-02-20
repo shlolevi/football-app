@@ -24,6 +24,13 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { MaterialModule } from './material/material.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire'
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthGuard} from '@angular/fire/auth-guard';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 
 @NgModule({
@@ -35,6 +42,7 @@ import { environment } from '../environments/environment';
     ErrorComponent,
     HeaderComponent,
     FooterComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,9 +52,13 @@ import { environment } from '../environments/environment';
     GamesModule,
     BrowserAnimationsModule,
     ReactiveFormsModule, FormsModule, 
-    MaterialModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    MaterialModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: "registerImmediately" }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

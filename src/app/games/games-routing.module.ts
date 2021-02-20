@@ -6,31 +6,51 @@ import { GamesComponent } from './games.component';
 import { Routes } from '@angular/router';
 import { ManagedGameComponent } from './managed-game/managed-game.component';
 import { CreateGroupsComponent } from './create-groups/create-groups.component';
+import { AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard'
+import { map } from 'rxjs/operators';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
+const onlyAllowSelf =  next => map(user => (!!user && next.params.id === (user as any).uid) || ['']);
 
 export const gamesRoutes: Routes = [
+  
   {
       path: '',
       component: GamesComponent,
       children: [
         {
-          path:'', redirectTo: 'add',
+          path:'', redirectTo: 'delete',
           pathMatch: 'full'
         },
           {
               path: 'add',
-              component: AddGameComponent
+              component: AddGameComponent,
+              canActivate: [AngularFireAuthGuard],
+              data: { authGuardPipe: redirectUnauthorizedToLogin }
           },
           {
             path: 'delete',
-            component: DeleteGameComponent
+            component: DeleteGameComponent,
+            canActivate: [AngularFireAuthGuard],
+            data: { authGuardPipe: redirectUnauthorizedToLogin }
           },
           {
-            path: 'manage',
-            component: ManagedGameComponent
+            path: 'delete/:id',
+            component: DeleteGameComponent,
+            canActivate: [AngularFireAuthGuard],
+            data: { authGuardPipe: onlyAllowSelf }
+          },
+          {
+            path: 'manage/:id',
+            component: ManagedGameComponent,
+            canActivate: [AngularFireAuthGuard],
+            data: { authGuardPipe: redirectUnauthorizedToLogin }
           },
           {
             path: 'groups',
-            component: CreateGroupsComponent
+            component: CreateGroupsComponent,
+            canActivate: [AngularFireAuthGuard],
+            data: { authGuardPipe: redirectUnauthorizedToLogin }
           }
       ]
   }

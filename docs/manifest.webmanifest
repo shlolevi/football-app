@@ -1,8 +1,8 @@
 {
   "name": "כדורגל בשכונה",
   "short_name": "כדורגל",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "theme_color": "#62b3ec",
+  "background_color": "#62b3ec",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
@@ -10,49 +10,49 @@
     {
       "src": "assets/icons/football-72_x_72.svg",
       "sizes": "72x72",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "maskable any"
     },
     {
       "src": "assets/icons/football-96_x_96.svg",
       "sizes": "96x96",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "maskable any"
     },
     {
       "src": "assets/icons/football-128_x_128.svg",
       "sizes": "128x128",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "maskable any"
     },
     {
       "src": "assets/icons/football-144_x_144.svg",
       "sizes": "144x144",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "maskable any"
     },
     {
       "src": "assets/icons/football-152_x_152.svg",
       "sizes": "152x152",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "maskable any"
     },
     {
       "src": "assets/icons/football-192_x_192.svg",
       "sizes": "192x192",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "maskable any"
     },
     {
       "src": "assets/icons/football-384_x_384.svg",
       "sizes": "384x384",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "maskable any"
     },
     {
       "src": "assets/icons/football-512_x_512.svg",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "maskable any"
     }
   ]

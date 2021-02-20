@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { DocumentData } from '@angular/fire/firestore';
 
 
 @Component({
@@ -14,10 +16,12 @@ export class SigninComponent implements OnInit {
   error: string;
   userForm: any;
   post: any = '';
+  action: 'login' | 'signup' = 'login';
+  loading = false;
 
   constructor(private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder, private afAuth: AngularFireAuth, private auth: AuthService) { }
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -25,21 +29,33 @@ export class SigninComponent implements OnInit {
       password: ['', [Validators.required]]
     });
   }
-  onSubmit(form) {
-    console.log(this.userForm.value)
+  async onSubmit() {
+    this.loading = true;
+    this.error = null;
+    const { email, password } = this.userForm.value;
+    const resp = await this.afAuth.auth.signInWithEmailAndPassword(email,password);
+    const uid= resp.user.uid;
 
-    // this.authService.signInUser(this.userForm.value.email, this.userForm.value.password)
-    //   .then((user) => {
-    //     console.log(user.user)
-    //     this.authService.setLoginStatus(true);
-    //     this.router.navigateByUrl('home');
-    //   })
-    //   .catch( err => this.error = err.message );
-    this.userForm.reset();
+    // get user name
+    const user = this.authService.getUserById(uid).subscribe (user => {
+      this.authService.setUserUidObj(user.data());
+
+      this.router.navigate([`/games/delete/${uid}`]);
+    });
+
+      this.loading = false;
+    // this.userForm.reset();
   }
 
   removeError() {
     this.error = null;
   }
 
+  get isLogin(){
+    return this.action === 'login';
+  }
+
+  get isSignUp(){
+    return this.action === 'signup';
+  }
 }

@@ -6,10 +6,17 @@
     text-align:right;
 }
 
-::ng-deep .mat-card{
-    max-width: 450px;
+:host ::ng-deep{
+     .mat-card{
+        max-width: 450px;
+     }
 }
-::ng-deep .mat-card-content{
-    max-height: 250px;
-    overflow-y: auto;
+:host ::ng-deep{
+     .mat-card-content{
+        overflow-y: auto;
+     }
+}
+
+.gamelink:hover {
+   background: #6571ce;
 }

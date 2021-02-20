@@ -15,13 +15,17 @@
   <img mat-card-image src="assets/barcelona-players.jpg" alt="football game">
   <mat-card-content>
     <div class="form-element">
-        <div *ngFor="let player of players" class="player">
+        <!--div *ngFor="let player of players" class="player">
           <div class="cta"><mat-icon (click)=deletePlayer(player.id)>delete</mat-icon></div> <div>{{player.name}} </div>
+        </div-->
+        <div *ngFor="let player of users | async; index as i" class="player">
+          <div class="cta"><mat-icon (click)=deletePlayer(player.uid) *ngIf="user.role === 'Admin' || player.uid == user.id">delete</mat-icon></div> <div>{{player.name}} </div> <div>- {{i+1}} </div>
         </div>
+
     </div>
   </mat-card-content>
 </mat-card>
-    <div class="form-element">
+    <div class="form-element" *ngIf="user.role === 'Admin'">
       <button mat-raised-button color="primary" (click)="navToNewPlayer()" class="button" >הוסף שחקן חדש</button>
     </div>
 </div>

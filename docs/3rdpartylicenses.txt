@@ -57,6 +57,17 @@ MIT
 @angular/core
 MIT
 
+@angular/fire
+MIT
+
+@angular/fire/auth
+
+@angular/fire/auth-guard
+
+@angular/fire/firestore
+
+@angular/fire/storage
+
 @angular/forms
 MIT
 
@@ -96,6 +107,8 @@ THE SOFTWARE.
 @angular/material/datepicker
 
 @angular/material/dialog
+
+@angular/material/expansion
 
 @angular/material/form-field
 
@@ -391,6 +404,14 @@ THE SOFTWARE.
 
 firebase
 Apache-2.0
+
+firebase/app
+
+firebase/auth
+
+firebase/firestore
+
+firebase/storage
 
 hammerjs
 MIT

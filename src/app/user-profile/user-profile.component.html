@@ -1,0 +1,51 @@
+
+<mat-toolbar color="primary">
+  <img src="assets/icons/football-player.svg" height="50" aria-label="add player"/>
+
+  <span class="fill-remaining-space">פרופיל משתמש</span> 
+</mat-toolbar>
+
+<div class="container" novalidate> 
+<mat-card class="signin-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>פרופיל משתמש</mat-card-title>
+    <mat-card-subtitle> פרטי משתמש במערכת</mat-card-subtitle>
+  </mat-card-header>
+    <img mat-card-image src="assets/ball.jpg" alt="פרופיל משתמש">
+  <mat-card-content>
+
+<form [formGroup]="userForm" (ngSubmit)="onUpdate()" class="form" [class.loading]="loading" *ngIf="item | async ">
+
+    <div class="form-element userImage"> 
+    <div *ngIf="downloadedUrl | async; let srcUrl"> 
+        <img [src]="srcUrl" height="70" alt="תמונת פרופיל">
+    </div>
+    <div *ngIf="!(downloadedUrl | async)"> 
+      <img src="assets/profile-placeholder.jpg" alt="תמונת פרופיל">
+    </div>
+      <input class="upload" type="file" #fileInput (change)="fileChange($event)" accept=".png,.jpg">
+      <progress max="100" [value]="uploadProgrress | async" *ngIf = "isShow"></progress>
+      <button mat-raised-button color="primary" (click)="fileInput.click()" class="button cta-button">בחר תמונה</button>
+    </div>
+
+    <mat-form-field class="form-element"> 
+  <mat-label>שם פרטי ומשפחה</mat-label>
+      <input matInput type="userName" placeholder="שם פרטי ומשפחה" formControlName="userName" id="userName"  >
+  </mat-form-field>
+
+ <mat-form-field class="form-element"> 
+  <mat-label>כתובת אימייל</mat-label>
+      <input matInput type="email" placeholder="כתובת אימייל" formControlName="email" id="email" >
+  </mat-form-field>
+
+    <div class="form-element buttons">
+      <button mat-raised-button color="primary" type="submit" class="button cta-button" [disabled]="!userForm.valid">עדכן</button>
+      <button mat-raised-button color="primary" (click)="back()" class="button cta-button">חזור</button>
+    </div>
+        
+  </form>
+  </mat-card-content>
+</mat-card>
+
+</div>

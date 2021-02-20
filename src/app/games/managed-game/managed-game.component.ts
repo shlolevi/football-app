@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreCollection, DocumentData } from '@angular/fire/firestore';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth.service';
+import { Games } from 'src/app/models/user-profile.model';
 
 @Component({
   selector: 'app-managed-game',
@@ -13,27 +17,30 @@ export class ManagedGameComponent implements OnInit {
 
   formGroup: FormGroup;
   post: any = '';
-
-  playing: any[] = [{name:'שלומי', id:1}, {name:'אלי', id:2},{name:'איציק', id:3},{name:'אוהד', id:5},{name:'איתן', id:4},
-  {name:'עידן', id:5}, {name:'דניאל', id:6},{name:'יניב', id:7},{name:'אוראל', id:8},{name:'אדיסן', id:9}];
-
-  waiting: any[] = [{name:'בני', id:1}, {name:'דורון', id:2},{name:'אלן', id:3}];
-
-
+  user: any;
   playerControl = new FormControl(null,Validators.required);
   options: string[] = ['שלומי', 'איציק', 'אלי'];
   filteredOptions: Observable<string[]>;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+   uid:string;
+   game: DocumentData;
+   private gamesRef: AngularFirestoreCollection<Games>;
+
+  constructor(private formBuilder: FormBuilder,private router: Router, private authService: AuthService, 
+    private afs: AngularFirestore, private activatedRoute: ActivatedRoute, private afAuth: AngularFireAuth) {
+      this.gamesRef = afs.collection('games');
+     }
 
 
   ngOnInit() {
     this.createForm();
-
-    this.filteredOptions = this.playerControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+    this.uid = this.activatedRoute.snapshot.paramMap.get('id');
+    // get game data
+    this.authService.getGameById(this.uid).subscribe (game => {
+      this.game = game.data();
+    // get loggedin user
+    this.user = this.authService.UserUidObj;
+    });
   }
 
   private _filter(value: string): string[] {
@@ -43,18 +50,62 @@ export class ManagedGameComponent implements OnInit {
   }
   
   createForm() {
-    this.formGroup = this.formBuilder.group({
-      'player' :this.playerControl
+    // this.formGroup = this.formBuilder.group({
+    //   'player' :this.playerControl
 
-    });
+    // });
   }
 
+  addPlayerToWaitingList(){
+
+    this.gamesRef.doc(this.uid).get().toPromise().then((res) => {
+      let exist = res.data().waiting.filter(item => item.uid == this.user.uid);
+      if( exist.length == 0){
+        this.authService.addItemToArrayInGamesWaitingDoc(this.uid,{name:this.user.name ,uid: this.user.uid});
+      }
+         this.back();
+
+   }).catch(error => console.log(error));
+  }
+  addPlayerToPlayingList(){
+    // get players and check if user already exist
+    // const userExist = this.authService.isUserRegistered(this.uid,this.user.uid);
+    // TODO -  move to service
+    this.gamesRef.doc(this.uid).get().toPromise().then((res) => {
+       let exist = res.data().players.filter(item => item.uid == this.user.uid);
+      
+        if(this.game.players.length < this.game.numOfPlayers && exist.length == 0){
+          this.authService.addItemToArrayInGamesPlayersDoc(this.uid,{name: this.user.name,uid: this.user.uid});
+          this.back();
+        }else{
+          this.addPlayerToWaitingList();
+          this.back();
+        }
+    }).catch(error => console.log(error));
+
+
+
+  }
   deletePlayer(player){
-    console.log('delete player:' + player.id); 
+    this.authService.removeItemFromArrayInGamesPlayersDoc(this.uid,player.uid);
+    // check if waiting not empty get the first on list add to players and delete from waiting
+    this.AddFromWaitingToPlayers();
+    this.back();
   }
-
+  
+  AddFromWaitingToPlayers(){
+    let firstOnWaiting;
+      if(this.game.waiting.length > 0){
+       firstOnWaiting = this.game.waiting[0];
+       // remove from waiting
+        this.authService.removeItemFromArrayInGamesWaitingDoc(this.uid,firstOnWaiting.uid);
+       // add to players
+          this.authService.addItemToArrayInGamesPlayersDoc(this.uid,firstOnWaiting);
+      }
+  }
   deleteWaitPlayer(waiter){
-    console.log('delete waiter:' + waiter.id); 
+    this.authService.removeItemFromArrayInGamesWaitingDoc(this.uid,waiter.uid);
+    this.back();
   }
 
   navToCreateGroups(){
@@ -63,6 +114,10 @@ export class ManagedGameComponent implements OnInit {
  
   onSubmit(post) {
     this.post = post;
+  }
+
+  back(){
+    this.router.navigate(["/games/delete"]);
   }
 
 }

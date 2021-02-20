@@ -4,22 +4,28 @@
   }
 
   .gamePlayers {
+    @media screen and (max-width: 462px) {  
+      display: grid;
+      grid-template-columns: 1fr;
+     grid-gap:10px;
+    }
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap:50px;
+    grid-gap:10px;
   }
 
   .players, .waiting{
     background-color: #62b3ec;
-    min-height:200px;
+    min-height:250px;
     border-radius: 5px;
-    height: 150px;
-    grid-gap:20px;
+    height: 200px;
+    grid-gap:5px;
     overflow-y: auto;
     text-align: center;
     padding: 5px;
   }
 
+  
   .playersList{
     display: grid;
     grid-template-columns: 30px 1fr 30px;
@@ -28,7 +34,10 @@
 .players-title, .waiting-title{
 color:#0866a8;
 }
-  mat-card-content{
-    width: 90%;
 
+:host ::ng-deep{
+
+  mat-card{
+    text-align: center;
   }
+}

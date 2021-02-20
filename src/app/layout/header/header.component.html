@@ -3,22 +3,31 @@
     <mat-icon>menu</mat-icon>
   </button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item (click)="routeToPage('/players/list')">
     <mat-icon>list</mat-icon>
-    <span><a routerLink="/players/list">רשימת שחקנים</a></span>
+    <span>רשימת שחקנים</span>
   </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="routeToPage('/games/delete')">
     <mat-icon>delete</mat-icon>
-    <span><a routerLink="/games/delete">רשימת משחקים</a></span>
+    <span>רשימת משחקים</span>
+  </button>
+    <button mat-menu-item (click)="gotoProfile()">
+    <mat-icon>info</mat-icon>
+    <span>פרופיל</span>
   </button>
 
 </mat-menu>
   <span>כדורגל בשכונה</span>
+  <span class="welcome">שלום, {{user.name}}</span>
+  
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  <!--button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>favorite</mat-icon>
   </button>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
+  </button-->
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" style="transform: rotateY(180deg)" (click)="logOut()">
+    <mat-icon>exit_to_app</mat-icon>
   </button>
 </mat-toolbar>

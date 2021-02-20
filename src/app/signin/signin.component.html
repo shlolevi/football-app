@@ -1,27 +1,3 @@
-<!--form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5">
-
-  <p class="h4 mb-4">Sign in</p>
-
-  
-<div class="form-row mb-4">
-</div>
-
-<div class="form-row mb-4">  
-<input type="password" formControlName="password" id="password" class="form-control mb-4" placeholder="Password">
-</div>
-<div class="form-group">
-		<button class="btn btn-primary" type="submit">Login</button>
-        <button [routerLink]="'/signup'" class="btn btn-primary">Create a account?</button>
-</div>
-
-  <hr>
-
-</form-->
-
-
-
-
-
 <mat-toolbar color="primary">
   <img src="assets/icons/football-player.svg" height="50" aria-label="add player"/>
 
@@ -38,7 +14,8 @@
     <img mat-card-image src="assets/football-login.jpg" width="150" alt="delete player">
   <mat-card-content>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)" class="form">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form">
+  <div *ngIf="error"> {{error}} </div>
     <mat-form-field class="form-element"> 
   <mat-label>כתובת אימייל</mat-label>
       <input matInput type="email" placeholder="כתובת אימייל" formControlName="email" id="email" >
@@ -49,10 +26,8 @@
     <input matInput type="password" placeholder=" סיסמא" formControlName="password" id="password" >
   </mat-form-field>
     <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!userForm.valid">היכנס</button>
-    </div>
-    <div class="form-element">
-      <button mat-raised-button color="primary" [routerLink]="'/signup'" class="btn btn-primary button">צור חשבון ?</button>
+      <button mat-raised-button color="primary" type="submit" class="button cta-button" [disabled]="!userForm.valid">היכנס</button>
+      <button mat-raised-button color="primary" [routerLink]="'/signup'" class="btn btn-primary button cta-button">צור חשבון ?</button>
     </div>
   </form>
   </mat-card-content>

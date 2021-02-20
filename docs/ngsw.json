@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1612631967719,
+  "timestamp": 1613820158569,
   "index": "https://shlolevi.github.io/football-app/index.html",
   "assetGroups": [
     {
@@ -8,20 +8,20 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "https://shlolevi.github.io/football-app/5-es2015.558eabc17642bd258a4e.js",
-        "https://shlolevi.github.io/football-app/5-es5.558eabc17642bd258a4e.js",
-        "https://shlolevi.github.io/football-app/6-es2015.9d8b05b20f4f13f8eb09.js",
-        "https://shlolevi.github.io/football-app/6-es5.9d8b05b20f4f13f8eb09.js",
+        "https://shlolevi.github.io/football-app/5-es2015.e2053d76cace62208fb3.js",
+        "https://shlolevi.github.io/football-app/5-es5.e2053d76cace62208fb3.js",
+        "https://shlolevi.github.io/football-app/6-es2015.255b787391f7329189de.js",
+        "https://shlolevi.github.io/football-app/6-es5.255b787391f7329189de.js",
         "https://shlolevi.github.io/football-app/favicon.ico",
         "https://shlolevi.github.io/football-app/index.html",
-        "https://shlolevi.github.io/football-app/main-es2015.d60df7b2f8886ef6c182.js",
-        "https://shlolevi.github.io/football-app/main-es5.d60df7b2f8886ef6c182.js",
+        "https://shlolevi.github.io/football-app/main-es2015.8d52bb555c0618f22b58.js",
+        "https://shlolevi.github.io/football-app/main-es5.8d52bb555c0618f22b58.js",
         "https://shlolevi.github.io/football-app/manifest.webmanifest",
         "https://shlolevi.github.io/football-app/polyfills-es2015.ffa9bb4e015925544f91.js",
         "https://shlolevi.github.io/football-app/polyfills-es5.0290b245fbcca09184ac.js",
-        "https://shlolevi.github.io/football-app/runtime-es2015.aeaca49d68e3415868c1.js",
-        "https://shlolevi.github.io/football-app/runtime-es5.aeaca49d68e3415868c1.js",
-        "https://shlolevi.github.io/football-app/styles.4eb105ed5d3c46140b1f.css"
+        "https://shlolevi.github.io/football-app/runtime-es2015.bcda33dd4cca3aac0ffc.js",
+        "https://shlolevi.github.io/football-app/runtime-es5.bcda33dd4cca3aac0ffc.js",
+        "https://shlolevi.github.io/football-app/styles.8fb7bb2f9e7cfda9aac3.css"
       ],
       "patterns": []
     },
@@ -31,6 +31,7 @@
       "updateMode": "prefetch",
       "urls": [
         "https://shlolevi.github.io/football-app/assets/add-player.png",
+        "https://shlolevi.github.io/football-app/assets/ball.jpg",
         "https://shlolevi.github.io/football-app/assets/barcelona-players.jpg",
         "https://shlolevi.github.io/football-app/assets/football-game.jpg",
         "https://shlolevi.github.io/football-app/assets/football-login.jpg",
@@ -54,6 +55,7 @@
         "https://shlolevi.github.io/football-app/assets/icons/icon-96x96.png",
         "https://shlolevi.github.io/football-app/assets/icons/new-game.svg",
         "https://shlolevi.github.io/football-app/assets/new-game.jpg",
+        "https://shlolevi.github.io/football-app/assets/profile-placeholder.jpg",
         "https://shlolevi.github.io/football-app/assets/teams-list.jpg"
       ],
       "patterns": []
@@ -61,11 +63,12 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://shlolevi.github.io/football-app/5-es2015.558eabc17642bd258a4e.js": "45bb2dfcb62ca56a3d068545dd07e04dcd84379c",
-    "https://shlolevi.github.io/football-app/5-es5.558eabc17642bd258a4e.js": "45bb2dfcb62ca56a3d068545dd07e04dcd84379c",
-    "https://shlolevi.github.io/football-app/6-es2015.9d8b05b20f4f13f8eb09.js": "bf9ef368fef4afbfab6a029b1be0f3e628a1e1c8",
-    "https://shlolevi.github.io/football-app/6-es5.9d8b05b20f4f13f8eb09.js": "bf9ef368fef4afbfab6a029b1be0f3e628a1e1c8",
+    "https://shlolevi.github.io/football-app/5-es2015.e2053d76cace62208fb3.js": "57375c25674108415340eae08b627767c93cf6fe",
+    "https://shlolevi.github.io/football-app/5-es5.e2053d76cace62208fb3.js": "57375c25674108415340eae08b627767c93cf6fe",
+    "https://shlolevi.github.io/football-app/6-es2015.255b787391f7329189de.js": "d53f11cc1073ea8daa35f3078ea1712ae7af56cb",
+    "https://shlolevi.github.io/football-app/6-es5.255b787391f7329189de.js": "d53f11cc1073ea8daa35f3078ea1712ae7af56cb",
     "https://shlolevi.github.io/football-app/assets/add-player.png": "05472efb83d0cf0bebd042c7450fd0d1b8a33591",
+    "https://shlolevi.github.io/football-app/assets/ball.jpg": "f6cf598b1a9a0949baef60a4457af46ef42633da",
     "https://shlolevi.github.io/football-app/assets/barcelona-players.jpg": "d64e1bc2ddf366731fc3cc3349cbc88d37ca7674",
     "https://shlolevi.github.io/football-app/assets/football-game.jpg": "b34a74ff9dc5e57d9eeef2aece6dcead48492791",
     "https://shlolevi.github.io/football-app/assets/football-login.jpg": "a742baf6b2c195610ea813a58b5070eafc365e2d",
@@ -89,17 +92,18 @@
     "https://shlolevi.github.io/football-app/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "https://shlolevi.github.io/football-app/assets/icons/new-game.svg": "62c493ad7f8a74f72f7b11a7ad4a04a439b08074",
     "https://shlolevi.github.io/football-app/assets/new-game.jpg": "892711cc5f000a4ab839e8ba9348c43a9d0011dc",
+    "https://shlolevi.github.io/football-app/assets/profile-placeholder.jpg": "ca08188344fd6658acd817841b4f4427407265f0",
     "https://shlolevi.github.io/football-app/assets/teams-list.jpg": "647e5e0cf24efa43c5e8c2715a8014046a74aecd",
     "https://shlolevi.github.io/football-app/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "https://shlolevi.github.io/football-app/index.html": "d1e121feb636ae080d75d57dd6f6f82e7a177eb1",
-    "https://shlolevi.github.io/football-app/main-es2015.d60df7b2f8886ef6c182.js": "30af0ef7fef55c75df71fee7f38cf3fe1657605a",
-    "https://shlolevi.github.io/football-app/main-es5.d60df7b2f8886ef6c182.js": "f15f815686e65357b66ca818d3bc2ed625cdf71b",
-    "https://shlolevi.github.io/football-app/manifest.webmanifest": "cc808e6f8147b6d0013548dbfbe66bc441fcf0ce",
+    "https://shlolevi.github.io/football-app/index.html": "16a9123efd19da0b99a4c6e891bd989319c5ea3e",
+    "https://shlolevi.github.io/football-app/main-es2015.8d52bb555c0618f22b58.js": "436fa53307f14f85d38bb9783cfb148098d4c575",
+    "https://shlolevi.github.io/football-app/main-es5.8d52bb555c0618f22b58.js": "b0c9e5c873b9451e91fd56dfa95e03b6f0e219cc",
+    "https://shlolevi.github.io/football-app/manifest.webmanifest": "87f8ff0ea50238059c8bd32afe4ee9b7b0860ad5",
     "https://shlolevi.github.io/football-app/polyfills-es2015.ffa9bb4e015925544f91.js": "79b2ff5ba292ae9e56f0b43982b9e76d9ddcf285",
     "https://shlolevi.github.io/football-app/polyfills-es5.0290b245fbcca09184ac.js": "a7bfe75cfe39caaf5bc4c64b35dd9f1f0918a25f",
-    "https://shlolevi.github.io/football-app/runtime-es2015.aeaca49d68e3415868c1.js": "8bf89ab10f59d7c2f5f75207cd96591582a28045",
-    "https://shlolevi.github.io/football-app/runtime-es5.aeaca49d68e3415868c1.js": "dd4d46756fbb39e5d0b2844514e7ad767400ffa9",
-    "https://shlolevi.github.io/football-app/styles.4eb105ed5d3c46140b1f.css": "56fcc63782fd7eed426c61b1e276564fa516dde7"
+    "https://shlolevi.github.io/football-app/runtime-es2015.bcda33dd4cca3aac0ffc.js": "99f21e8f5f2c29dfde12e971ecb07dab54462f03",
+    "https://shlolevi.github.io/football-app/runtime-es5.bcda33dd4cca3aac0ffc.js": "429c3b5264299ebaa13cff2fb482fda3c2f3a6f2",
+    "https://shlolevi.github.io/football-app/styles.8fb7bb2f9e7cfda9aac3.css": "c11fa8171e3614dfcb44080285f1459b61e97c5c"
   },
   "navigationUrls": [
     {

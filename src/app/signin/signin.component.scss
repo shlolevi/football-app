@@ -116,15 +116,21 @@
 //     }
 //   }
 
-::ng-deep .mat-card-image{
+:host ::ng-deep{
+   .mat-card-image{
   object-fit: cover; /*this makes the image in src fit to the size specified below*/
   width: calc(80%) !important; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+   }
 }
 
-::ng-deep mat-card{
+:host ::ng-deep{
+   mat-card{
     text-align: center;
+   }
 }
 
-::ng-deep .mat-card{
-  max-width: 450px;
-}
+:host ::ng-deep{
+  .mat-card{
+    max-width: 450px;
+  }
+} 
