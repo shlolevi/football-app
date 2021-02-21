@@ -18,8 +18,7 @@ export class CreateGroupsComponent implements OnInit {
   }
 
   back(){
-    // TODO add game id to route
-    this.router.navigate(["/games/manage"]);
+    this.router.navigate(["/games/delete"]);
   }
 
   playingOrder(){

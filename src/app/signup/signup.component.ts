@@ -40,10 +40,7 @@ export class SignupComponent implements OnInit {
       await this.authService.CreateUserDocument();
        // this.userForm.reset();
         const uid= resp.user.uid;
-        debugger;
-        // const p = {id:uid};
-        // const t = {displayName: `${firstName} ${lastName}`};
-        this.authService.setUserUidObj({...{displayName: `${firstName} ${lastName}`}, id:uid, role: 'user', level:3});
+        this.authService.setUserUidObj({...{name: `${firstName} ${lastName}`}, uid:uid, role: 'user', level:3});
         this.router.navigate([`/games/delete/${uid}`]);
       //} catch(err){}
       })

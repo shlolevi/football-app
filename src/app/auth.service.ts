@@ -155,29 +155,38 @@ export class AuthService implements OnInit{
   //   }
   //  }
 
-addItemToArrayInGamesPlayersDoc(id: string, payload:any){
+async addItemToArrayInGamesPlayersDoc(id: string, payload:any){
   this.gamesRef.doc(id).get().toPromise().then((res) => {
     this.gamesRef.doc(id).update({players:[...res.data().players,payload]});
    }).catch(error => console.log(error));
 }
-addItemToArrayInGamesWaitingDoc(id: string, payload:any){
+async addItemToArrayInGamesWaitingDoc(id: string, payload:any){
   this.gamesRef.doc(id).get().toPromise().then((res) => {
     this.gamesRef.doc(id).update({waiting:[...res.data().waiting,payload]});
    }).catch(error => console.log(error));
 }
 
- removeItemFromArrayInGamesPlayersDoc(id: string, itemToRemove: string){
+async removeItemFromArrayInGamesPlayersDoc(id: string, itemToRemove: string){
   this.gamesRef.doc(id).get().toPromise().then((res) => {
     const updatedPlayers = res.data().players.filter(item => item.uid !== itemToRemove);
-
     this.gamesRef.doc(id).update({players:updatedPlayers});
   }).catch(error => console.log(error));
  }
 
- removeItemFromArrayInGamesWaitingDoc(id: string, itemToRemove: string){
+ async removePlayerFromGame(id: string, itemToRemove: string, payload: any){
+  this.gamesRef.doc(id).get().toPromise().then((res) => {
+    const updatedPlayersAfterRemove = res.data().players.filter(item => item.uid !== itemToRemove);
+    const updatedPlayersAdding = [...updatedPlayersAfterRemove, payload ];
+    const updatedWaiting = res.data().waiting.slice(1);
+    this.gamesRef.doc(id).update({players: updatedPlayersAdding, waiting: updatedWaiting});
+
+  }).catch(error => console.log(error));
+ }
+
+ 
+ async removeItemFromArrayInGamesWaitingDoc(id: string, itemToRemove: string){
   this.gamesRef.doc(id).get().toPromise().then((res) => {
     const updatedWaiting = res.data().waiting.filter(item => item.uid !== itemToRemove);
-
     this.gamesRef.doc(id).update({waiting:updatedWaiting});
   }).catch(error => console.log(error));
 }

@@ -19,7 +19,10 @@
           <div class="cta"><mat-icon (click)=deletePlayer(player.id)>delete</mat-icon></div> <div>{{player.name}} </div>
         </div-->
         <div *ngFor="let player of users | async; index as i" class="player">
-          <div class="cta"><mat-icon (click)=deletePlayer(player.uid) *ngIf="user.role === 'Admin' || player.uid == user.id">delete</mat-icon></div> <div>{{player.name}} </div> <div>- {{i+1}} </div>
+          <div class="cta"><mat-icon (click)="deletePlayer(player.uid)" *ngIf="user.role === 'Admin'">delete</mat-icon></div> 
+          <div class="cta"><mat-icon (click)="editPlayer(player.uid)" *ngIf="user.role === 'Admin'">info</mat-icon></div>
+          <div>{{player.name}} </div> 
+          <div>- {{i+1}} </div>
         </div>
 
     </div>

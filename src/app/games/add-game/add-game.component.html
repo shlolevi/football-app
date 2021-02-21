@@ -4,7 +4,9 @@
   <span class="fill-remaining-space">הוספת משחק</span> 
 </mat-toolbar>
 
-<div class="container" *ngIf="!post; else forminfo" novalidate> 
+<!--div class="container" *ngIf="!post; else forminfo" novalidate--> 
+<div class="container" novalidate> 
+
 <mat-card class="game-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
@@ -29,14 +31,7 @@
                     <ngx-material-timepicker #fullTime [defaultTime]="'13:30'"></ngx-material-timepicker>
 
     </mat-form-field>
-
-    <!--mat-form-field appearance="fill">
-            <input placeholder="שעת משחק" aria-label="24hr format" [ngxTimepicker]="fullTime" formControlName="gameTime" [format]="24"  readonly>
-            <ngx-material-timepicker #fullTime></ngx-material-timepicker>
-    </mat-form-field-->
-
-
-    <mat-form-field class="form-element">
+   <mat-form-field class="form-element">
     <mat-label> מספר שחקנים</mat-label>
         <input matInput placeholder="מספר שחקנים למשחק" formControlName="numOfPlayers"  autocomplete="off" tabindex="2">
     </mat-form-field>
@@ -50,9 +45,10 @@
 		  </div>
 
 
-    <div class="form-element">
+    <div class="form-element buttons">
       <button mat-raised-button color="primary" type="submit" class="button cta-button" [disabled]="!formGroup.valid" tabindex="3">שמור</button>
-      <button mat-raised-button color="primary" (click)="back()" class="button cta-button" tabindex="4">חזור</button>
+            <button mat-raised-button color="primary" type="button" (click)="back()" class="button cta-button" tabindex="4">חזור</button>
+
     </div>
   </form>
 

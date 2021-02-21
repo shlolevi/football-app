@@ -71,6 +71,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
   margin: 5px !important
 }
 
+.cta-button-outsider{
+  @media screen and (max-width: 462px) {  
+    width: 100%;
+  }
+  width: 90%;
+  margin: 5px !important;
+  background-color: #474e73 !important;
+}
 
  .error{
    color: red;

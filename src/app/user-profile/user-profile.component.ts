@@ -4,7 +4,7 @@ import { AngularFirestore,AngularFirestoreDocument } from '@angular/fire/firesto
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 import { UserProfile } from '../models/user-profile.model';
@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   userEmail: string;
   isShow = false;
 
-  downloadedUrl : Observable<string>;
+  downloadedUrl: Observable<UserProfile>;
   uploadProgrress: Observable<number>;
 
 
@@ -37,9 +37,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private formBuilder: FormBuilder,
      private route: ActivatedRoute, private router: Router, private auth: AuthService, private afStorage: AngularFireStorage) { 
        this.uid = this.route.snapshot.paramMap.get('id');
-       this.afStorage.ref(`users/${this.uid}/profile-image`).getDownloadURL().subscribe( userImage =>{
-        this.downloadedUrl = userImage;
-       });
+       this.downloadedUrl = this.afStorage.ref(`users/${this.uid}/profile-image`).getDownloadURL();
      }
 
   ngOnInit() {
@@ -48,11 +46,11 @@ export class UserProfileComponent implements OnInit {
       email: [this.userEmail],
     });
 
+
     this.itemDoc = this.afs.doc<UserProfile>(`users/${this.uid}`);
     this.item = this.itemDoc.valueChanges();
     this.item.subscribe(it => {
 
-      // TODO - fix refresh load data
       this.userForm.patchValue({
         userName: it.name,
         email : it.email
@@ -85,7 +83,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   fileChange(event){
-    // TODO - fix uploading image
     this.downloadedUrl = null;
     const file = event.target.files[0];
     const filePath = `users/${this.uid}/profile-image`;

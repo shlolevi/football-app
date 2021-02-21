@@ -39,7 +39,6 @@ export class SigninComponent implements OnInit {
     // get user name
     const user = this.authService.getUserById(uid).subscribe (user => {
       this.authService.setUserUidObj(user.data());
-
       this.router.navigate([`/games/delete/${uid}`]);
     });
 

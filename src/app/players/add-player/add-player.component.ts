@@ -12,8 +12,8 @@ export class AddPlayerComponent implements OnInit {
   post: any = '';
 
   userRoles: any[] = [
-    {value: 'מנהל', viewValue: 'מנהל'},
-    {value: 'משתמש', viewValue: 'משתמש'}
+    {value: 'Admin', viewValue: 'מנהל'},
+    {value: 'user', viewValue: 'משתמש'}
   ];
   userLevels: any[] = [
     {value: 'one', viewValue: '1'},

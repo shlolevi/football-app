@@ -23,11 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   gotoProfile(){
-    debugger;
-    // const uid = this.authService.UserUid;
     const user = this.authService.UserUidObj;
-
-    
     this.router.navigate(["/profile", user.uid]);
   }
 

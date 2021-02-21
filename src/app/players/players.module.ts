@@ -10,11 +10,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MaterialModule } from '../material/material.module';
 import { playersRoutes } from './players-routing.module';
 import { PlayerListComponent } from './player-list/player-list.component';
+import { EditPlayerComponent } from './edit-player/edit-player.component';
 
 
 
 @NgModule({
-  declarations: [AddPlayerComponent, DeletePlayerComponent, PlayersComponent, PlayerListComponent],
+  declarations: [AddPlayerComponent, DeletePlayerComponent, PlayersComponent, PlayerListComponent, EditPlayerComponent],
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,

@@ -30,6 +30,12 @@
     display: grid;
     grid-template-columns: 30px 1fr 30px;
     text-align: right;
+    padding:1px;
+    line-height: 30px;
+    border-bottom: 3px groove #8a93a5;
+    .cta mat-icon{
+      line-height: 30px;
+    }
   }
 .players-title, .waiting-title{
 color:#0866a8;

@@ -17,9 +17,6 @@ export class DeleteGameComponent implements OnInit {
 
   formGroup: FormGroup;
   post: any = '';
-  gamesList: any[] = [{name:'12/02/2021', id:1}, {name:'14/02/2021', id:3},{name:'15/02/2021', id:4},{name:'16/02/2021', id:5},{name:'17/02/2021', id:6},
-  {name:'20/02/2021', id:1}, {name:'22/02/2021', id:3},{name:'24/02/2021', id:4},{name:'25/02/2021', id:5},{name:'27/02/2021', id:6}];
-
   user$: Observable<any>;
   private gamesCollection: AngularFirestoreCollection<any>;
   games: Observable<any[]>;
@@ -36,15 +33,9 @@ export class DeleteGameComponent implements OnInit {
         // get loggedin user
     this.user = this.authService.UserUidObj;
     this.user$ = this.afAuth.user;
-    this.user$.subscribe(user => {
-      // TODO  - listen to changes
-      console.log('user id: ' + user.uid);
-      console.log('aaaa: ' + JSON.stringify(this.afAuth.auth.currentUser));
-      
-    });
 
     this.createForm();
-    this.retrieveTutorials();
+    this.retrieveGames();
   }
 
   createForm() {
@@ -57,8 +48,7 @@ export class DeleteGameComponent implements OnInit {
     this.post = post;
   }
 
-  retrieveTutorials(): void {
-    // TODO - convert date
+  retrieveGames(): void {
     this.authService.getAllGames().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -67,16 +57,12 @@ export class DeleteGameComponent implements OnInit {
       )
     ).subscribe(data => {
       this.gList = data;
-      // TODO - conver timestamp to date
-      // this.gList.forEach(element => {
-      //   element.date = new Date(element.date.seconds);
-      // });
     });
   }
 
   deleteGame(id){
-    console.log(`delete game: ${id}`);
-    // TODO -  delete game
+    this.gamesCollection.doc(id).delete();
+
   }
 
   navToNewGame(){

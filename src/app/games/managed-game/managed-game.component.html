@@ -1,6 +1,4 @@
 <mat-toolbar color="primary">
-  <!--mat-icon aria-hidden="false" aria-label="Example home icon">sports_handball
-</mat-icon-->
   <img src="assets/icons/new-game.svg" height="50" aria-label="add player"/>
 
   <span class="fill-remaining-space"> ניהול משחק</span> 
@@ -20,54 +18,36 @@
 
 <div class="form-element">
     <mat-label class="cLabel">תאריך משחק</mat-label>
-        {{game.date.seconds}}
+        {{game?.date | date:'dd/MM/yy'}}
 </div>
  <div class="form-element">
     <mat-label class="cLabel">שעת משחק:</mat-label>
-        {{game.gameTime}}
+        {{game?.gameTime}}
 </div>
  <div class="form-element">
     <mat-label class="cLabel">מספר שחקנים:</mat-label>
-        {{game.numOfPlayers}}
+        {{game?.numOfPlayers}}
 </div>
 <div class="form-element buttons">
   <mat-label class="cLabel">שם שחקן :</mat-label>
-   {{user.name}}
+   {{user?.name}}
 </div>
-    <!--mat-form-field class="form-element"> 
-    <mat-label>שם שחקן</mat-label>
-    <input type="text"
-           placeholder="בחר שחקן"
-           aria-label="שם שחקן"
-           matInput
-           formControlName="player"
-           [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field-->
-  
     <div class="form-element buttons">
-      <button mat-raised-button color="primary" (click)="addPlayerToPlayingList()" class="button cta-button" >הוסף</button>
-      <button mat-raised-button color="primary" (click)="navToCreateGroups()"  class="button cta-button" >צור קבוצות</button>
+      <button mat-raised-button color="primary" (click)="addPlayerToPlayingList()" class="button cta-button" >הצטרף</button>
+      <button mat-raised-button color="primary" (click)="navToCreateGroups()"  class="button cta-button" *ngIf="user?.role ==='Admin'" >צור קבוצות</button>
     </div>
-
-
   </form>
 
   <div class="gamePlayers">
-
      <div class="players"> 
           <div class="players-title"> 
               <h3>   רשימת שחקנים </h3>
           </div>
     <div class="form-element cont">
-        <div *ngFor="let play of game.players; index as i" class="playersList" >
-            <div>{{i+1}} -  </div>
-            <div>{{i+1}} - {{play.name}} </div>
-            <div class="cta" *ngIf="user.uid == play.uid || user.role ==='Admin'"><mat-icon (click)=deletePlayer(play)>delete</mat-icon></div>
+        <div *ngFor="let play of game?.players; index as i" class="playersList" >
+            <div>{{i+1}} - </div>
+            <div>{{play.name}} </div>
+            <div class="cta" *ngIf="user.uid == play.uid || user?.role ==='Admin'"><mat-icon (click)=deletePlayer(play)>delete</mat-icon></div>
             </div>
         </div>
      </div>
@@ -77,10 +57,10 @@
                </div>
 
         <div class="form-element">
-        <div *ngFor="let wait of game.waiting; index as i" class="playersList" >
+        <div *ngFor="let wait of game?.waiting; index as i" class="playersList" >
             <div>{{i+1}} - </div>
             <div>{{wait.name}} </div>
-            <div class="cta" *ngIf="user.uid == wait.uid || user.role ==='Admin'"><mat-icon (click)=deleteWaitPlayer(wait)>delete</mat-icon></div>
+            <div class="cta" *ngIf="user.uid == wait.uid || user?.role ==='Admin'"><mat-icon (click)=deleteWaitPlayer(wait)>delete</mat-icon></div>
             </div>
         </div>
      </div>
