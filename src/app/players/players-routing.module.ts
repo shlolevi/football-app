@@ -6,6 +6,7 @@ import { DeletePlayerComponent } from './delete-player/delete-player.component';
 import { PlayersComponent } from './players.component';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { EditPlayerComponent } from './edit-player/edit-player.component';
+import { ErrorComponent } from '../error/error.component';
 
 
 export const playersRoutes: Routes = [
@@ -32,7 +33,9 @@ export const playersRoutes: Routes = [
           {
             path: 'list',
             component: PlayerListComponent
-          }
+          },
+          { path: '**', component: ErrorComponent }
+
       ]
   }
 

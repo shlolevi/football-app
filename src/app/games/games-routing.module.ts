@@ -8,6 +8,7 @@ import { ManagedGameComponent } from './managed-game/managed-game.component';
 import { CreateGroupsComponent } from './create-groups/create-groups.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard'
 import { map } from 'rxjs/operators';
+import { ErrorComponent } from '../error/error.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
 const onlyAllowSelf =  next => map(user => (!!user && next.params.id === (user as any).uid) || ['']);
@@ -51,7 +52,9 @@ export const gamesRoutes: Routes = [
             component: CreateGroupsComponent,
             canActivate: [AngularFireAuthGuard],
             data: { authGuardPipe: redirectUnauthorizedToLogin }
-          }
+          },
+          { path: '**', component: ErrorComponent }
+
       ]
   }
 
