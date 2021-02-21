@@ -11,6 +11,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { ManagedGameComponent } from './managed-game/managed-game.component';
 import { CreateGroupsComponent } from './create-groups/create-groups.component';
 
+
 @NgModule({
   declarations: [AddGameComponent, DeleteGameComponent, GamesComponent, ManagedGameComponent, CreateGroupsComponent],
   imports: [

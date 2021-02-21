@@ -33,8 +33,7 @@ export const playersRoutes: Routes = [
           {
             path: 'list',
             component: PlayerListComponent
-          },
-          { path: '**', component: ErrorComponent }
+          }
 
       ]
   }

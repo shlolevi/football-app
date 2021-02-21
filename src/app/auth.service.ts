@@ -98,7 +98,9 @@ export class AuthService implements OnInit{
     const userProfile : UserProfile = {
       uid: user.uid,
       name: user.displayName,
-      email: user.email
+      email: user.email,
+      role : 'user',
+      level: 3
     }
     // write to cloud firestore
       return  this.afs.doc(`users/${user.uid}`).set(userProfile);

@@ -3,6 +3,8 @@ export interface UserProfile {
     name: string;
     email: string;
     password?: string;
+    role?: string;
+    level?: number;
 }
 
 export  interface Games {

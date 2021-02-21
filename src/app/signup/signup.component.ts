@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit {
  errorMessage = "";
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, 
-    private afAuth: AngularFireAuth, private router: Router ) { 
+    private afAuth: AngularFireAuth, private router: Router, private _snackBar: MatSnackBar ) { 
     this.error = null; }
 
 
@@ -30,10 +31,19 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  openSnackBar(msg: string) {
+    this._snackBar.open(msg, '', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      direction: 'rtl'
+    });
+  }
+
   async onSignUp() {
     this.loading = true;
     const { firstName, lastName, email, password } = this.userForm.value;
-    // try{  
+     try{  
     const resp = await this.afAuth.auth.createUserWithEmailAndPassword(email,password);
     await resp.user.updateProfile({displayName: `${firstName} ${lastName}`})
       .then( async res => {
@@ -42,12 +52,22 @@ export class SignupComponent implements OnInit {
         const uid= resp.user.uid;
         this.authService.setUserUidObj({...{name: `${firstName} ${lastName}`}, uid:uid, role: 'user', level:3});
         this.router.navigate([`/games/delete/${uid}`]);
-      //} catch(err){}
+
       })
       .catch( err => {
+        this.openSnackBar('100 - חלה שגיאה צור קשר עם התמיכה')
         this.error = err.message 
         this.errorMessage =  err.message;
       });
+    } catch(err){
+      if(err.message.includes('email address is already in use')){
+        this.openSnackBar('כתובת אימייל כבר רשומה במערכת - 200')
+      }else if(err.message.includes('Password should be at least 6 characters')){
+        this.openSnackBar('סיסמא צריכה להיות לפחות 6 תווים - 300')
+      }else{
+        this.openSnackBar('חלה שגיאה צור קשר עם התמיכה - 400')
+      }
+    }
 
       this.loading = false;
 
