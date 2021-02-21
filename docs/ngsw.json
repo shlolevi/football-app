@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1613923783210,
+  "timestamp": 1613924377811,
   "index": "https://shlolevi.github.io/football-app/index.html",
   "assetGroups": [
     {
@@ -108,7 +108,7 @@
     "https://shlolevi.github.io/football-app/index.html": "08c8f66a8dd4973a3c5e8712c42f05fef9ca6633",
     "https://shlolevi.github.io/football-app/main-es2015.f11ee94fa8a345680afd.js": "eaef739dff776eed28c26cebc0c6ef7f86fb9ec0",
     "https://shlolevi.github.io/football-app/main-es5.f11ee94fa8a345680afd.js": "07791372964412c1cc489fb1f3927a281defbade",
-    "https://shlolevi.github.io/football-app/manifest.webmanifest": "419cea4fa204be1b431886719caac01c8b315b60",
+    "https://shlolevi.github.io/football-app/manifest.webmanifest": "0d17f54941153e09285c1be00b774dc46441fe16",
     "https://shlolevi.github.io/football-app/polyfills-es2015.ffa9bb4e015925544f91.js": "79b2ff5ba292ae9e56f0b43982b9e76d9ddcf285",
     "https://shlolevi.github.io/football-app/polyfills-es5.0290b245fbcca09184ac.js": "a7bfe75cfe39caaf5bc4c64b35dd9f1f0918a25f",
     "https://shlolevi.github.io/football-app/runtime-es2015.2a512208d11f645d324a.js": "c83ffae22710912f88419532890a38c2636fc4b6",
