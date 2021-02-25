@@ -93,3 +93,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
 .mt-15{
   margin-top:15px;
 }
+
+
+  mat-dialog-container{
+    direction: rtl;
+
+    dialog-box{
+
+      h2{
+        color:#2e8bd0;
+      }
+      mat-dialog-actions{
+        justify-content: center !important;
+
+        button{
+          color:#2e8bd0 !important;
+        }
+      }
+    }
+  }

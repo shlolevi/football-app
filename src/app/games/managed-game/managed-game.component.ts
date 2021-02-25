@@ -2,11 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection, DocumentData } from '@angular/fire/firestore';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { Games } from 'src/app/models/user-profile.model';
+import { DialogBox } from 'src/app/shared/dialog-box.component';
+
+export enum Lists{
+  Playing = 'playing',
+  Waiting = 'waiting'
+}
 
 @Component({
   selector: 'app-managed-game',
@@ -21,13 +27,17 @@ export class ManagedGameComponent implements OnInit {
   playerControl = new FormControl(null,Validators.required);
   // options: string[] = ['שלומי', 'איציק', 'אלי'];
   filteredOptions: Observable<string[]>;
-
+  lists= Lists;
    uid:string;
    game: DocumentData;
    private gamesRef: AngularFirestoreCollection<Games>;
 
+  //  Playing = 'playing';
+  //  Waiting = 'waiting'
+
   constructor(private formBuilder: FormBuilder,private router: Router, private authService: AuthService, 
-    private afs: AngularFirestore, private activatedRoute: ActivatedRoute, private afAuth: AngularFireAuth, private _snackBar: MatSnackBar) {
+    private afs: AngularFirestore, private activatedRoute: ActivatedRoute,
+     private afAuth: AngularFireAuth, private _snackBar: MatSnackBar, public dialog: MatDialog) {
       this.gamesRef = afs.collection('games');
      }
 
@@ -53,6 +63,22 @@ export class ManagedGameComponent implements OnInit {
     // this.formGroup = this.formBuilder.group({
     //   'player' :this.playerControl
     // });
+  }
+
+  openDialog(user, list: string) {
+    const dialogRef = this.dialog.open(DialogBox,{
+      data: { user: user, question:'למחוק את השחקן מהרשימה ?' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        if(list === Lists.Playing){
+          this.deletePlayer(result);
+        }else{
+          this.deleteWaitPlayer(result);
+        }
+      }
+    });
   }
 
   openSnackBar(msg: string) {
@@ -129,7 +155,7 @@ export class ManagedGameComponent implements OnInit {
   }
 
   navToCreateGroups(){
-    this.router.navigate(["games/groups"]);
+    this.router.navigate(["games/groups",this.uid]);
  }
  
   onSubmit(post) {

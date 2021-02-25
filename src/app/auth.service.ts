@@ -209,6 +209,23 @@ getGameById(id){
 getUserById(id){
   return this.usersRef.doc(id).get();
 }
+
+addImageToUser(userId, imgPath){
+  this.getUserById(userId).subscribe(user => {
+    let paylaod = {...user.data(), img: imgPath};
+    this.updateIteminInCollection('users', paylaod, userId);
+  })
+}
+
+updateDisplayGame(gameId, val){
+  this.getGameById(gameId).subscribe(game => {
+    let paylaod = {...game.data(), isDisplay: val};
+    this.updateIteminInCollection('games', paylaod, gameId);
+  })
+  }
+
+}
+  
 // removeItemFromArrayInDoc(id: string, arrayName:string, field:string, payload:any, itemToRemove: string){
 //   this.gamesRef.doc(id).get().toPromise().then((res) => {
 //       const updatedPlayers = res.data().arrayName.filter(item => item.field !== itemToRemove);
@@ -216,7 +233,7 @@ getUserById(id){
 //     }).catch(error => console.log(error));
 // }
 
-}
+
 
 
 

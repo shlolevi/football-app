@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth.service';
+import { DialogBox } from 'src/app/shared/dialog-box.component';
 
 
 @Component({
@@ -22,12 +24,15 @@ export class DeleteGameComponent implements OnInit {
   games: Observable<any[]>;
   gList: any[];
   user: any;
-  
+
+
   constructor(private formBuilder: FormBuilder, private router: Router,private afs: AngularFirestore, 
-    private afAuth: AngularFireAuth, private authService:AuthService){
-    this.gamesCollection = afs.collection('games');
+    private afAuth: AngularFireAuth, private authService:AuthService, public dialog: MatDialog){
+    // this.gamesCollection = afs.collection('games');
+    this.gamesCollection = afs.collection<any>('games', ref => ref.orderBy('date', "asc"));
     this.games = this.gamesCollection.valueChanges();
    }
+
 
   ngOnInit() {
         // get loggedin user
@@ -36,6 +41,15 @@ export class DeleteGameComponent implements OnInit {
 
     this.createForm();
     this.retrieveGames();
+
+
+  }
+
+  isCurrentDate(gameDate): boolean{
+    const convertedGameDate = new Date(gameDate).setHours(0,0,0,0);
+    const current = new Date().setHours(0,0,0,0);
+
+    return convertedGameDate === current;
   }
 
   createForm() {
@@ -47,13 +61,25 @@ export class DeleteGameComponent implements OnInit {
   onSubmit(post) {
     this.post = post;
   }
+  
+  openDialog(gameId) {
+    const dialogRef = this.dialog.open(DialogBox,{
+      data: { user: gameId, question:'אתה בטוח שאתה רוצה למחוק ?' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.authService.updateDisplayGame(result, false);
+      }
+    });
+  }
 
   retrieveGames(): void {
     this.authService.getAllGames().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
+        ).filter(data => data.isDisplay !=  false)
       )
     ).subscribe(data => {
       this.gList = data;

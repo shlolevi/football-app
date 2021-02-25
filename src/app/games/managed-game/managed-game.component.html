@@ -47,7 +47,7 @@
         <div *ngFor="let play of game?.players; index as i" class="playersList" >
             <div>{{i+1}} - </div>
             <div>{{play.name}} </div>
-            <div class="cta" *ngIf="user.uid == play.uid || user?.role ==='Admin'"><mat-icon (click)=deletePlayer(play)>delete</mat-icon></div>
+            <div class="cta" *ngIf="user.uid == play.uid || user?.role ==='Admin'"><mat-icon (click)=openDialog(play,lists.Playing)>delete</mat-icon></div>
             </div>
         </div>
      </div>
@@ -60,7 +60,7 @@
         <div *ngFor="let wait of game?.waiting; index as i" class="playersList" >
             <div>{{i+1}} - </div>
             <div>{{wait.name}} </div>
-            <div class="cta" *ngIf="user.uid == wait.uid || user?.role ==='Admin'"><mat-icon (click)=deleteWaitPlayer(wait)>delete</mat-icon></div>
+            <div class="cta" *ngIf="user.uid == wait.uid || user?.role ==='Admin'"><mat-icon (click)=openDialog(wait,lists.Waiting)>delete</mat-icon></div>
             </div>
         </div>
      </div>

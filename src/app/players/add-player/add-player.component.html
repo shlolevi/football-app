@@ -6,7 +6,7 @@
   <span class="fill-remaining-space">הוספת שחקן</span> 
 </mat-toolbar>
 
-<div class="container" *ngIf="!post; else forminfo" novalidate> 
+<div class="container" novalidate> 
 
 <mat-card class="player-card">
   <mat-card-header>
@@ -23,6 +23,15 @@
     <mat-label>שם שחקן</mat-label>
         <input matInput placeholder="שם ושם משפחה" formControlName="name" autocomplete="off">
     </mat-form-field>
+<mat-form-field class="form-element"> 
+  <mat-label>כתובת אימייל</mat-label>
+      <input matInput type="email" placeholder="כתובת אימייל" formControlName="email" id="email" >
+  </mat-form-field>
+  
+  <mat-form-field class="form-element"> 
+  <mat-label>סיסמא</mat-label>
+    <input matInput type="password" placeholder=" סיסמא" formControlName="password" id="password" >
+  </mat-form-field>
 
     <mat-form-field class="form-element">
         <mat-label>דירוג</mat-label>
@@ -37,7 +46,7 @@
         <mat-label>הרשאה</mat-label>
         <select matNativeControl formControlName="role" name="role">
         <option value="" selected></option>
-        <option *ngFor="let role of userRoles" [value]="role.viewValue">
+        <option *ngFor="let role of userRoles" [value]="role.value">
             {{role.viewValue}}
         </option>
         </select>
@@ -90,9 +99,9 @@
 
 </div>
 
-<ng-template #forminfo>
+<!--ng-template #forminfo>
   <div class="container">
     {{ post | json }}
   </div>
-</ng-template>
+</ng-template-->
 

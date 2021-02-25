@@ -5,6 +5,7 @@ export interface UserProfile {
     password?: string;
     role?: string;
     level?: number;
+    isDisplay?: boolean;
 }
 
 export  interface Games {
@@ -14,6 +15,7 @@ export  interface Games {
     players?:[];
     waiting?:[];
     teams?:[];
+    isDisplay?: boolean;
   }
 
   export  interface Users {}

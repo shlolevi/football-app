@@ -48,7 +48,7 @@ export const gamesRoutes: Routes = [
             data: { authGuardPipe: redirectUnauthorizedToLogin }
           },
           {
-            path: 'groups',
+            path: 'groups/:id',
             component: CreateGroupsComponent,
             canActivate: [AngularFireAuthGuard],
             data: { authGuardPipe: redirectUnauthorizedToLogin }

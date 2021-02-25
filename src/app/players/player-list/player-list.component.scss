@@ -1,6 +1,6 @@
 .player{
     display: grid;
-    grid-template-columns: 30px 30px 1fr 30px ;
+    grid-template-columns: 30px 30px 1fr 1fr 30px ;
     margin: 7px 0;
     direction: ltr;
     text-align:right;
@@ -22,4 +22,11 @@
 
  button.button.mat-raised-button.mat-button-base.mat-primary{
     margin-top:15px!important;
+}
+
+.userImg{
+   // width: 30px;
+   // height: 30px;
+   border-radius: 50%;
+   margin-top:-3px;
 }

@@ -38,6 +38,8 @@ export class UserProfileComponent implements OnInit {
      private route: ActivatedRoute, private router: Router, private auth: AuthService, private afStorage: AngularFireStorage) { 
        this.uid = this.route.snapshot.paramMap.get('id');
        this.downloadedUrl = this.afStorage.ref(`users/${this.uid}/profile-image`).getDownloadURL();
+      //  this.downloadedUrl.subscribe(val => { console.log(val);
+      //  })
      }
 
   ngOnInit() {
@@ -98,6 +100,11 @@ export class UserProfileComponent implements OnInit {
     .pipe(
       finalize(()=> {
         this.downloadedUrl = fileRef.getDownloadURL();
+        // add image to user
+        this.downloadedUrl.subscribe(img => {
+          this.auth.addImageToUser(this.uid, img);
+        });
+        
         this.isShow = false;
       })
     ).subscribe();

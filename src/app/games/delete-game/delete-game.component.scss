@@ -17,8 +17,11 @@
      }
 }
 
-.gamelink:hover {
+.game:hover {
    background: #6571ce;
+   border-radius: 10px;
+   padding: 2px;
+   margin: 2px 0;
 }
 
 .gameList{
@@ -28,4 +31,11 @@
  .gamelink{
    padding: 4px;
    border-radius: 10px;
+ }
+
+ .current{
+    background: #6571ce;
+    border-radius: 10px;
+    color:#fff;
+    font-weight: bold;
  }

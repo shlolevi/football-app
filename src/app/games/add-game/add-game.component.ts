@@ -28,12 +28,10 @@ export class AddGameComponent implements OnInit {
     // const utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
     const utc = new Date().toISOString().slice(0, 10);
     // let someDate = new Date();
-    // someDate.setDate(someDate.getDate() + 9); 
-    // console.log(someDate);
-    
+    // someDate.setDate(someDate.getDate() + 9);     
     this.formGroup = this.formBuilder.group({
       'numOfPlayers' :new FormControl(20,[Validators.required, Validators.min(10), Validators.max(25)]),
-      'date': new FormControl(utc, Validators.required),
+      'date': new FormControl(new Date(), Validators.required),
       'gameTime': new FormControl('13:30', Validators.required)
     });
   }
