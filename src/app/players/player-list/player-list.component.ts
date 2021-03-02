@@ -1,79 +1,91 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/auth.service';
-import { DialogBox } from 'src/app/shared/dialog-box.component';
+import { Component, OnInit } from "@angular/core";
+import { AngularFireAuth } from "@angular/fire/auth";
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from "@angular/fire/firestore";
+import { AngularFireStorage } from "@angular/fire/storage";
+import { FormGroup } from "@angular/forms";
+import { MatDialog } from "@angular/material";
+import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { AuthService } from "src/app/auth.service";
+import { DialogBox } from "src/app/shared/dialog-box.component";
 
 @Component({
-  selector: 'app-player-list',
-  templateUrl: './player-list.component.html',
-  styleUrls: ['./player-list.component.scss']
+  selector: "app-player-list",
+  templateUrl: "./player-list.component.html",
+  styleUrls: ["./player-list.component.scss"],
 })
-export class PlayerListComponent implements OnInit{
-
+export class PlayerListComponent implements OnInit {
   formGroup: FormGroup;
-  post: any = '';
+  post: any = "";
   private userCollection: AngularFirestoreCollection<any>;
   users: Observable<any[]>;
   user: any;
   downloadedUrl: Observable<any>;
+  userCollection1: any;
 
-  
-  constructor(private router: Router, private afs: AngularFirestore, private afAuth: AngularFireAuth,
-     private authService: AuthService, private afStorage: AngularFireStorage, public dialog: MatDialog){ 
+  constructor(
+    private router: Router,
+    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private authService: AuthService,
+    private afStorage: AngularFireStorage,
+    public dialog: MatDialog
+  ) {
     // this.userCollection = afs.collection('users');
-    this.userCollection = afs.collection<any>('users', ref => ref.orderBy('name', "asc"));
+    this.userCollection = afs.collection<any>("users", (ref) =>
+      ref.orderBy("name", "asc")
+    );
+    // this.userCollection1 = this.userCollection.ref.where('level','>',3);
+    // this.userCollection = afs.collection<any>('users', ref => ref.where('level','>',3).orderBy('level', "asc"));
+    this.users = this.userCollection.valueChanges();
 
-     this.users = this.userCollection.valueChanges();
+    // const queryRef = this.userCollection.where('name', '==', 'Witcher 3');
 
-          // const queryRef = this.userCollection.where('name', '==', 'Witcher 3');
- 
-     //const gamesRef = db.collection('games');
-     //const queryRef = gamesRef.where('name', '==', 'Witcher 3');
+    //const gamesRef = db.collection('games');
+    //const queryRef = gamesRef.where('name', '==', 'Witcher 3');
 
     //  citiesRef.orderBy("name").limit(3);
 
     // this.users = this.userCollection.valueChanges().pipe(
     //   tap(console.log)
     //   )
-    
-
-   }
+  }
   ngOnInit(): void {
-        // get loggedin user
-        this.user = this.authService.UserUidObj;
+    // get loggedin user
+    this.user = this.authService.UserUidObj;
   }
 
   openDialog(userId) {
-    const dialogRef = this.dialog.open(DialogBox,{
-      data: { user: userId, question:'אתה בטוח שאתה רוצה למחוק ?' },
+    const dialogRef = this.dialog.open(DialogBox, {
+      data: { user: userId, question: "אתה בטוח שאתה רוצה למחוק ?" },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         this.deletePlayer(result);
-
       }
     });
   }
 
-  deletePlayer(id){
-    this.afs.collection("users").doc(id).delete().then(() => {
-    }).catch((error) => {
+  deletePlayer(id) {
+    this.afs
+      .collection("users")
+      .doc(id)
+      .delete()
+      .then(() => {})
+      .catch((error) => {
         console.error("Error removing document: ", error);
-    });
+      });
   }
 
-  navToNewPlayer(){
-      this.router.navigate(["players/add"]);
+  navToNewPlayer() {
+    this.router.navigate(["players/add"]);
   }
 
-  editPlayer(player){
+  editPlayer(player) {
     this.router.navigate([`players/edit/`, player.uid]);
   }
 }

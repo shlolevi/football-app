@@ -132,5 +132,9 @@ export class AddPlayerComponent implements OnInit {
       }
     }
   }
+
+  back(){
+    this.router.navigate(["/players/list"]);
+  }
   
 }

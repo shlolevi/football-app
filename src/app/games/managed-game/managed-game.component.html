@@ -1,81 +1,169 @@
 <mat-toolbar color="primary">
-  <img src="assets/icons/new-game.svg" height="50" aria-label="add player"/>
+  <img src="assets/icons/new-game.svg" height="50" aria-label="add player" />
 
-  <span class="fill-remaining-space"> ניהול משחק</span> 
+  <span class="fill-remaining-space"> ניהול משחק</span>
 </mat-toolbar>
 
-<div class="container" *ngIf="!post; else forminfo" novalidate> 
-<mat-card class="player-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title> ניהול משחק</mat-card-title>
-    <mat-card-subtitle> הוסף שחקנים למשחק וצור קבוצות</mat-card-subtitle>
-  </mat-card-header>
-    <img mat-card-image src="assets/new-game.jpg" width="150" alt="delete player">
-  <mat-card-content>
-
-<form  class="form">
-
-<div class="form-element">
-    <mat-label class="cLabel">תאריך משחק</mat-label>
-        {{game?.date | date:'dd/MM/yy'}}
-</div>
- <div class="form-element">
-    <mat-label class="cLabel">שעת משחק:</mat-label>
-        {{game?.gameTime}}
-</div>
- <div class="form-element">
-    <mat-label class="cLabel">מספר שחקנים:</mat-label>
-        {{game?.numOfPlayers}}
-</div>
-<div class="form-element buttons">
-  <mat-label class="cLabel">שם שחקן :</mat-label>
-   {{user?.name}}
-</div>
-    <div class="form-element buttons">
-      <button mat-raised-button color="primary" (click)="addPlayerToPlayingList()" class="button cta-button" >הצטרף</button>
-      <button mat-raised-button color="primary" (click)="navToCreateGroups()"  class="button cta-button" *ngIf="user?.role ==='Admin'" >צור קבוצות</button>
-    </div>
-  </form>
-
-  <div class="gamePlayers">
-     <div class="players"> 
-          <div class="players-title"> 
-              <h3>   רשימת שחקנים </h3>
-          </div>
-    <div class="form-element cont">
-        <div *ngFor="let play of game?.players; index as i" class="playersList" >
-            <div>{{i+1}} - </div>
-            <div>{{play.name}} </div>
-            <div class="cta" *ngIf="user.uid == play.uid || user?.role ==='Admin'"><mat-icon (click)=openDialog(play,lists.Playing)>delete</mat-icon></div>
-            </div>
-        </div>
-     </div>
-     <div class="waiting"> 
-               <div class="waiting-title"> 
-                    <h3>  ממתינים </h3>
-               </div>
-
+<div class="container" *ngIf="!post; else forminfo" novalidate>
+  <mat-card class="player-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title> ניהול משחק</mat-card-title>
+      <mat-card-subtitle> הוסף שחקנים למשחק וצור קבוצות</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="assets/new-game.jpg"
+      width="150"
+      alt="delete player"
+    />
+    <mat-card-content>
+      <form [formGroup]="formGroup" class="form">
         <div class="form-element">
-        <div *ngFor="let wait of game?.waiting; index as i" class="playersList" >
-            <div>{{i+1}} - </div>
-            <div>{{wait.name}} </div>
-            <div class="cta" *ngIf="user.uid == wait.uid || user?.role ==='Admin'"><mat-icon (click)=openDialog(wait,lists.Waiting)>delete</mat-icon></div>
-            </div>
+          <mat-label class="cLabel">תאריך משחק:</mat-label>
+          {{ game?.date | date: "dd/MM/yy" }}
         </div>
-     </div>
- </div>
-     <div class="form-element buttons mt-15">
-      <button mat-raised-button color="primary" (click)="back()" class="button " >חזור</button>
-    </div>
-  </mat-card-content>
-</mat-card>
+        <div class="form-element">
+          <mat-label class="cLabel">יום:</mat-label>
+          {{ dayOfTheWeek }}
+        </div>
+        <div class="form-element">
+          <mat-label class="cLabel">שעת משחק:</mat-label>
+          {{ game?.gameTime }}
+        </div>
+        <div class="form-element">
+          <mat-label class="cLabel">מספר שחקנים:</mat-label>
+          {{ game?.numOfPlayers }}
+        </div>
+        <div class="form-element buttons">
+          <mat-label class="cLabel">מיקום :</mat-label>
+          {{ game?.location }}
+          <a
+            href="{{ shakedLink }}"
+            target="_blank"
+            *ngIf="game?.location == 'שקד'"
+            ><mat-icon>map</mat-icon></a
+          >
+          <a
+            href="{{ ganYavneLink }}"
+            target="_blank"
+            *ngIf="game?.location == 'גן יבנה'"
+            ><mat-icon>map</mat-icon></a
+          >
+        </div>
+        <div class="form-element buttons">
+          <mat-label class="cLabel">שם שחקן :</mat-label>
+          {{ user?.name }}
+        </div>
 
-  
+        <mat-form-field class="form-element" *ngIf="isAdmin">
+          <mat-label>שם שחקן</mat-label>
+          <input
+            type="text"
+            placeholder="בחר שחקן"
+            aria-label="שם שחקן"
+            matInput
+            formControlName="player"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete
+            autoActiveFirstOption
+            #auto="matAutocomplete"
+            [displayWith]="displayFn"
+          >
+            <mat-option
+              *ngFor="let option of filteredOptions | async"
+              [value]="option"
+            >
+              {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <div class="form-element buttons">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="addPlayerToPlayingList()"
+            class="button cta-button"
+          >
+            הצטרף
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="navToCreateGroups()"
+            class="button cta-button"
+            *ngIf="user?.role === 'Admin'"
+          >
+            צור קבוצות
+          </button>
+        </div>
+      </form>
+
+      <div class="gamePlayers">
+        <div class="players">
+          <div class="players-title">
+            <h3>רשימת שחקנים</h3>
+          </div>
+          <div class="form-element cont">
+            <div
+              *ngFor="let play of game?.players; index as i"
+              class="playersList"
+            >
+              <div>{{ i + 1 }} -</div>
+              <div>{{ play.name }}</div>
+              <div
+                class="cta"
+                *ngIf="user.uid == play.uid || user?.role === 'Admin'"
+              >
+                <mat-icon (click)="openDialog(play, lists.Playing)"
+                  >delete</mat-icon
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="waiting">
+          <div class="waiting-title">
+            <h3>ממתינים</h3>
+          </div>
+
+          <div class="form-element">
+            <div
+              *ngFor="let wait of game?.waiting; index as i"
+              class="playersList"
+            >
+              <div>{{ i + 1 }} -</div>
+              <div>{{ wait.name }}</div>
+              <div
+                class="cta"
+                *ngIf="user.uid == wait.uid || user?.role === 'Admin'"
+              >
+                <mat-icon (click)="openDialog(wait, lists.Waiting)"
+                  >delete</mat-icon
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-element buttons mt-15">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="back()"
+          class="button"
+        >
+          חזור
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
 
 <ng-template #forminfo>
   <div class="container">
     {{ post | json }}
   </div>
-</ng-template>  
+</ng-template>

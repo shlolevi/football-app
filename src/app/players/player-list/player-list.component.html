@@ -1,36 +1,61 @@
 <mat-toolbar color="primary">
-  <img src="assets/icons/new-game.svg" height="50" aria-label="add player"/>
+  <img src="assets/icons/new-game.svg" height="50" aria-label="add player" />
 
-  <span class="fill-remaining-space">רשימת שחקנים</span> 
+  <span class="fill-remaining-space">רשימת שחקנים</span>
 </mat-toolbar>
 
-<div class="container"> 
-
-<mat-card class="game-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>רשימת שחקנים</mat-card-title>
-    <mat-card-subtitle>בחר שחקן מן הרשימה למחיקה</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="assets/barcelona-players.jpg" alt="football game">
-  <mat-card-content>
-    <div class="form-element">
+<div class="container">
+  <mat-card class="game-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>רשימת שחקנים</mat-card-title>
+      <mat-card-subtitle>בחר שחקן מן הרשימה למחיקה</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="assets/barcelona-players.jpg"
+      alt="football game"
+    />
+    <mat-card-content>
+      <div class="form-element">
         <!--div *ngFor="let player of players" class="player">
           <div class="cta"><mat-icon (click)=deletePlayer(player.id)>delete</mat-icon></div> <div>{{player.name}} </div>
         </div-->
         <div *ngFor="let player of users | async; index as i" class="player">
-          <div class="cta"><mat-icon (click)="openDialog(player.uid)" *ngIf="user.role === 'Admin'">delete</mat-icon></div> 
-          <div class="cta"><mat-icon (click)="editPlayer(player)" *ngIf="user.role === 'Admin'">info</mat-icon></div>
-          <div>{{player.name}} </div> 
-          <div> <img class="userImg" height="30" [src]="player?.img || 'assets/profile-placeholder.jpg'" alt="תמונת פרופיל"></div> 
-          <div>- {{i+1}} </div>
+          <div class="cta">
+            <mat-icon
+              (click)="openDialog(player.uid)"
+              *ngIf="user.role === 'Admin'"
+              >delete</mat-icon
+            >
+          </div>
+          <div class="cta">
+            <mat-icon (click)="editPlayer(player)" *ngIf="user.role === 'Admin'"
+              >info</mat-icon
+            >
+          </div>
+          <div>{{ player.name }}</div>
+          <div>
+            <img
+              class="userImg"
+              height="30"
+              [src]="player?.img || 'assets/profile-placeholder.jpg'"
+              alt="תמונת פרופיל"
+            />
+          </div>
+          <div>- {{ i + 1 }}</div>
         </div>
-
-    </div>
-  </mat-card-content>
-</mat-card>
-    <div class="form-element" *ngIf="user.role === 'Admin'">
-      <button mat-raised-button color="primary" (click)="navToNewPlayer()" class="button" >הוסף שחקן חדש</button>
-    </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <div class="form-element" *ngIf="user.role === 'Admin'">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="navToNewPlayer()"
+      class="button"
+    >
+      הוסף שחקן חדש
+    </button>
+  </div>
 </div>
-

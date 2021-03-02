@@ -1,35 +1,69 @@
 <mat-toolbar color="primary">
-  <img src="assets/icons/new-game.svg" height="50" aria-label="add player"/>
+  <img src="assets/icons/new-game.svg" height="50" aria-label="add player" />
 
-  <span class="fill-remaining-space">רשימת משחקים</span> 
+  <span class="fill-remaining-space">רשימת משחקים</span>
 </mat-toolbar>
 
-<div class="container"> 
-
-<mat-card class="game-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>רשימת משחקים</mat-card-title>
-    <mat-card-subtitle> בחר משחק מן הרשימה למחיקה או נהל משחק</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="assets/football-game.jpg" alt="football game">
-  <mat-card-content>
-    <div class="form-element gameList">
-        <div *ngFor="let game of gList; index as i" class="game" [ngClass]="isCurrentDate(game.date) ? 'current' : ''">
-          <div class="cta"><mat-icon (click)=openDialog(game.id) *ngIf="user.role ==='Admin'">delete</mat-icon></div>
-          <div class="cta"><mat-icon (click)=navToGameInfo(game.id)>info</mat-icon></div>
-          <div class="gamelink"><b> מספר {{i+1}}: </b> <span> תאריך: {{game.date | date:'d/M/yy'}}, <span>שעה: {{game.gameTime}} </span>  </span> </div>
+<div class="container">
+  <mat-card class="game-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>רשימת משחקים</mat-card-title>
+      <mat-card-subtitle>
+        בחר משחק מן הרשימה למחיקה או נהל משחק</mat-card-subtitle
+      >
+    </mat-card-header>
+    <img mat-card-image src="assets/football-game.jpg" alt="football game" />
+    <mat-card-content>
+      <div class="form-element gameList">
+        <div
+          *ngFor="let game of gList; index as i"
+          class="game"
+          [ngClass]="isCurrentDate(game.date) ? 'current' : ''"
+        >
+          <div class="cta">
+            <mat-icon
+              (click)="openDialog(game.id)"
+              *ngIf="user.role === 'Admin'"
+              >delete</mat-icon
+            >
+          </div>
+          <div class="cta">
+            <mat-icon
+              (click)="navToEditGame(game.id)"
+              *ngIf="user.role === 'Admin'"
+              >edit</mat-icon
+            >
+          </div>
+          <div class="cta">
+            <mat-icon (click)="navToGameInfo(game.id)">info</mat-icon>
+          </div>
+          <div class="gamelink">
+            <b> מספר {{ i + 1 }}: </b>
+            <span>
+              תאריך: {{ game.date | date: "d/M/yy" }},
+              <span>שעה: {{ game.gameTime }} </span>
+              <span>מיקום: {{ game?.location || "לא הוחלט" }} </span>
+            </span>
+          </div>
         </div>
-    </div>
-  </mat-card-content>
-</mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
-    <div class="form-element">
-      <button mat-raised-button color="primary" (click)="navToNewGame()" class="button" *ngIf="user?.role ==='Admin' || user?.role ==='Manager'" >הוסף משחק חדש</button>
-    </div>
-    
+  <div class="form-element">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="navToNewGame()"
+      class="button"
+      *ngIf="user?.role === 'Admin' || user?.role === 'Manager'"
+    >
+      הוסף משחק חדש
+    </button>
+  </div>
 
-    <!--div *ngIf="afAuth.user | async as user">
+  <!--div *ngIf="afAuth.user | async as user">
         {{user.uid}}
     </div-->
 </div>

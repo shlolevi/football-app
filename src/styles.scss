@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -19,7 +18,11 @@ $football-app-accent: mat-palette($mat-pink, A200, A100, A400);
 $football-app-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$football-app-theme: mat-light-theme($football-app-primary, $football-app-accent, $football-app-warn);
+$football-app-theme: mat-light-theme(
+  $football-app-primary,
+  $football-app-accent,
+  $football-app-warn
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -28,51 +31,59 @@ $football-app-theme: mat-light-theme($football-app-primary, $football-app-accent
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: rtl; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  direction: rtl;
+}
 .content {
-    min-height: calc(100vh - 150px);
-    padding: 20px;
-  }
+  min-height: calc(100vh - 150px);
+  padding: 20px;
+}
 
-  .container {
-    padding: 10px;
-    display: grid;
-    justify-content: center;
-  }
-  
-  .form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .form-element {
-    padding: 5px 0px 25px 2px;
-    width: 100%;
-  }
-  
-  .button {
-    width: 100%;
-  }
+.container {
+  padding: 10px;
+  display: grid;
+  justify-content: center;
+}
 
-  mat-form-field {
-    text-align: right !important;
- }
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
 
- .cta{
-   cursor: pointer;
- }
- .cta-button{
-  @media screen and (max-width: 462px) {  
+.form-element {
+  padding: 5px 0px 25px 2px;
+  width: 100%;
+}
+
+.button {
+  width: 100%;
+}
+
+mat-form-field {
+  text-align: right !important;
+}
+
+.cta {
+  cursor: pointer;
+  align-self: center;
+}
+.cta-button {
+  @media screen and (max-width: 462px) {
     width: 100%;
   }
   width: 47%;
-  margin: 5px !important
+  margin: 5px !important;
 }
 
-.cta-button-outsider{
-  @media screen and (max-width: 462px) {  
+.cta-button-outsider {
+  @media screen and (max-width: 462px) {
     width: 100%;
   }
   width: 90%;
@@ -80,35 +91,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;direction: r
   background-color: #474e73 !important;
 }
 
- .error{
-   color: red;
-   font-size: 12px;
- }
-
- .cLabel{
-   color: #3f51b5;
-   font-size:0.9em;
- }
-
-.mt-15{
-  margin-top:15px;
+.error {
+  color: red;
+  font-size: 12px;
 }
 
+.cLabel {
+  color: #3f51b5;
+  font-size: 0.9em;
+}
 
-  mat-dialog-container{
-    direction: rtl;
+.mt-15 {
+  margin-top: 15px;
+}
 
-    dialog-box{
+mat-dialog-container {
+  direction: rtl;
 
-      h2{
-        color:#2e8bd0;
-      }
-      mat-dialog-actions{
-        justify-content: center !important;
+  dialog-box {
+    h2 {
+      color: #2e8bd0;
+    }
+    mat-dialog-actions {
+      justify-content: center !important;
 
-        button{
-          color:#2e8bd0 !important;
-        }
+      button {
+        color: #2e8bd0 !important;
       }
     }
   }
+}

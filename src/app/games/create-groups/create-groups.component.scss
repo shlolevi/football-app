@@ -1,51 +1,54 @@
-:host ::ng-deep{
+:host ::ng-deep {
+  mat-card {
+    text-align: center;
+  }
 
-    mat-card{
-        text-align: center;
-    }
-
-    .inner-mat-card{
-     width: 150px;
-     display: inline-block;
-     margin: 15px;
-    }
+  .inner-mat-card {
+    width: 150px;
+    display: inline-block;
+    margin: 15px;
+  }
 }
-:host ::ng-deep{
-    
-    @media screen and (max-width: 462px) {  
-        mat-expansion-panel {
-        width: 90% !important;
-        display: block;
-        margin: 15px;
-        }
-    }
+:host ::ng-deep {
+  @media screen and (max-width: 462px) {
     mat-expansion-panel {
-
-        width: 150px;
-        display: inline-block;
-        margin: 15px;
+      width: 90% !important;
+      display: block;
+      margin: 15px;
     }
+  }
+  mat-expansion-panel {
+    width: 150px;
+    display: inline-block;
+    margin: 15px;
+  }
 
-    mat-expansion-panel-header,  mat-expansion-panel-header.mat-expanded:focus{
-        background: #505886;
-    }
+  mat-expansion-panel-header,
+  mat-expansion-panel-header.mat-expanded:focus {
+    background: #505886;
+  }
 
-    mat-expansion-panel-header:hover{
-        background: #3f51b5 !important;
-    }
-    
+  mat-expansion-panel-header:hover {
+    background: #3f51b5 !important;
+  }
 }
-.btns, .playingOrderContainer{
-    text-align: center;
+.btns,
+.playingOrderContainer {
+  text-align: center;
 }
 
-.groups{
-    text-align: center;
-    @media screen and (max-width: 462px) {  
-        .inner-mat-card{
-            width: 250px;
-            display: block;
-            margin: 15px;
-           }
+.groups {
+  text-align: center;
+  @media screen and (max-width: 462px) {
+    .inner-mat-card {
+      width: 250px;
+      display: block;
+      margin: 15px;
     }
+  }
+}
+
+.object-fit {
+  max-width: 400px;
+  object-fit: cover;
 }

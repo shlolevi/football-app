@@ -1,20 +1,26 @@
 <mat-toolbar color="primary">
-  <img src="assets/icons/new-game.svg" height="50" aria-label="add player"/>
+  <img src="assets/icons/new-game.svg" height="50" aria-label="add player" />
 
-  <span class="fill-remaining-space">צור קבוצות</span> 
+  <span class="fill-remaining-space">צור קבוצות</span>
 </mat-toolbar>
 
-<div class="container" *ngIf="!post; else forminfo" novalidate> 
-<mat-card class="player-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>צור קבוצות</mat-card-title>
-    <mat-card-subtitle> לחץ ליצירת קבוצות מאוזנות ולהגרלת סדר משחקים</mat-card-subtitle>
-  </mat-card-header>
-    <img mat-card-image src="assets/teams-list.jpg" width="150" alt="delete player">
-  <mat-card-content>
-
-<!--form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+<div class="container" *ngIf="!post; else forminfo" novalidate>
+  <mat-card class="player-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>צור קבוצות</mat-card-title>
+      <mat-card-subtitle>
+        לחץ ליצירת קבוצות מאוזנות ולהגרלת סדר משחקים</mat-card-subtitle
+      >
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="assets/teams-list.jpg"
+      class="object-fit"
+      alt="create groups"
+    />
+    <mat-card-content>
+      <!--form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
 
 <div class="form-element">
     <mat-label class="cLabel">תאריך משחק</mat-label>
@@ -51,117 +57,113 @@
 
 
   </form-->
-  <div class="groups">
-    <!--mat-card class="inner-mat-card">קבוצה 1</mat-card-->
+      <div class="groups">
+        <!--mat-card class="inner-mat-card">קבוצה 1</mat-card-->
 
-   
-<mat-accordion>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        קבוצה 1
-      </mat-panel-title>
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title> קבוצה 1 </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>שלומי</p>
+            <p>אלי</p>
+            <p>איציק</p>
+            <p>אוהד</p>
+            <p>עידן</p>
+          </mat-expansion-panel>
+        </mat-accordion>
 
-    </mat-expansion-panel-header>
-    <p>שלומי</p>
-    <p>אלי</p>
-    <p>איציק</p>
-    <p>אוהד</p>
-    <p>עידן</p>
-  </mat-expansion-panel>
-</mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title> קבוצה 2 </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>שלומי</p>
+            <p>אלי</p>
+            <p>איציק</p>
+            <p>אוהד</p>
+            <p>עידן</p>
+          </mat-expansion-panel>
+        </mat-accordion>
 
-<mat-accordion>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        קבוצה 2
-      </mat-panel-title>
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title> קבוצה 3 </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>שלומי</p>
+            <p>אלי</p>
+            <p>איציק</p>
+            <p>אוהד</p>
+            <p>עידן</p>
+          </mat-expansion-panel>
+        </mat-accordion>
 
-    </mat-expansion-panel-header>
-    <p>שלומי</p>
-    <p>אלי</p>
-    <p>איציק</p>
-    <p>אוהד</p>
-    <p>עידן</p>
-  </mat-expansion-panel>
-</mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title> קבוצה 4 </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>שלומי</p>
+            <p>אלי</p>
+            <p>איציק</p>
+            <p>אוהד</p>
+            <p>עידן</p>
+          </mat-expansion-panel>
+        </mat-accordion>
 
-<mat-accordion>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        קבוצה 3
-      </mat-panel-title>
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title> קבוצה 5 </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>שלומי</p>
+            <p>אלי</p>
+            <p>איציק</p>
+            <p>אוהד</p>
+            <p>עידן</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
 
-    </mat-expansion-panel-header>
-    <p>שלומי</p>
-    <p>אלי</p>
-    <p>איציק</p>
-    <p>אוהד</p>
-    <p>עידן</p>
-  </mat-expansion-panel>
-</mat-accordion>
+      <div class="form-element btns">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="playingOrder()"
+          class="btn btn-primary button cta-button"
+        >
+          מי משחק ראשון ...
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="back()"
+          class="btn btn-primary button cta-button"
+        >
+          חזור
+        </button>
+      </div>
 
-<mat-accordion>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        קבוצה 4
-      </mat-panel-title>
-
-    </mat-expansion-panel-header>
-    <p>שלומי</p>
-    <p>אלי</p>
-    <p>איציק</p>
-    <p>אוהד</p>
-    <p>עידן</p>
-  </mat-expansion-panel>
-</mat-accordion>
-
-<mat-accordion>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        קבוצה 5
-      </mat-panel-title>
-
-    </mat-expansion-panel-header>
-    <p>שלומי</p>
-    <p>אלי</p>
-    <p>איציק</p>
-    <p>אוהד</p>
-    <p>עידן</p>
-  </mat-expansion-panel>
-</mat-accordion>
-
-
-  </div>
-
-    <div class="form-element btns" >
-      <button mat-raised-button color="primary" (click)="playingOrder()" class="btn btn-primary button cta-button"> מי משחק ראשון ...</button>
-      <button mat-raised-button color="primary" (click)="back()" class="btn btn-primary button cta-button">חזור</button>
-    </div>
-    
-
-<div class="playingOrderContainer">
-    <mat-card class="inner-mat-card playingOrder" *ngIf="displayPlayingOrder">
-    <h4>הקבוצות ישחקו לפי הסדר הבא</h4>
-    <p>4</p>
-     <p>3</p>
-      <p>2</p>
-       <p>1</p>
-        <p>5</p>
-    </mat-card>
-</div>
-
-
-  </mat-card-content>
-</mat-card>
+      <div class="playingOrderContainer">
+        <mat-card
+          class="inner-mat-card playingOrder"
+          *ngIf="displayPlayingOrder"
+        >
+          <h4>הקבוצות ישחקו לפי הסדר הבא</h4>
+          <p>4</p>
+          <p>3</p>
+          <p>2</p>
+          <p>1</p>
+          <p>5</p>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
 
 <ng-template #forminfo>
   <div class="container">
     {{ post | json }}
   </div>
-</ng-template>  
+</ng-template>

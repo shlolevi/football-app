@@ -9,8 +9,10 @@
   <mat-card class="game-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title> הוספת משחק חדש:</mat-card-title>
-      <mat-card-subtitle> בחר תאריך, שעה ,מספר שחקנים ומיקום</mat-card-subtitle>
+      <mat-card-title> עריכת משחק:</mat-card-title>
+      <mat-card-subtitle>
+        עדכן תאריך, שעה ,מספר שחקנים ומיקום</mat-card-subtitle
+      >
     </mat-card-header>
     <img mat-card-image src="assets/new-game.jpg" alt="football game" />
     <mat-card-content>
@@ -79,24 +81,6 @@
             tabindex="3"
           />
         </mat-form-field>
-
-        <div class="form-element">
-          <mat-label> הוספת רשימת קבועים </mat-label>
-          <mat-button-toggle-group
-            name="fontStyle"
-            aria-label="Font Style"
-            #group="matButtonToggleGroup"
-            value="false"
-          >
-            <mat-button-toggle value="true" (change)="selectionChanged($event)"
-              >כן</mat-button-toggle
-            >
-            <mat-button-toggle value="false" (change)="selectionChanged($event)"
-              >לא</mat-button-toggle
-            >
-          </mat-button-toggle-group>
-        </div>
-
         <div class="form-element buttons">
           <button
             mat-raised-button

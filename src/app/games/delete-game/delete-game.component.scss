@@ -1,41 +1,41 @@
-.game{
-    display: grid;
-    grid-template-columns: 30px 30px 1fr;
-    grid-gap: 10px;;
-    direction: ltr;
-    text-align:right;
+.game {
+  display: grid;
+  grid-template-columns: 25px 25px 25px 1fr;
+  grid-gap: 3px;
+  direction: ltr;
+  text-align: right;
 }
 
-:host ::ng-deep{
-     .mat-card{
-        max-width: 450px;
-     }
+:host ::ng-deep {
+  .mat-card {
+    max-width: 450px;
+  }
 }
-:host ::ng-deep{
-     .mat-card-content{
-        overflow-y: auto;
-     }
+:host ::ng-deep {
+  .mat-card-content {
+    overflow-y: auto;
+  }
 }
 
 .game:hover {
-   background: #6571ce;
-   border-radius: 10px;
-   padding: 2px;
-   margin: 2px 0;
+  background: #6571ce;
+  border-radius: 10px;
+  padding: 2px;
+  margin: 2px 0;
 }
 
-.gameList{
-   height: 200px;
- }
+.gameList {
+  height: 200px;
+}
 
- .gamelink{
-   padding: 4px;
-   border-radius: 10px;
- }
+.gamelink {
+  padding: 4px;
+  border-radius: 10px;
+}
 
- .current{
-    background: #6571ce;
-    border-radius: 10px;
-    color:#fff;
-    font-weight: bold;
- }
+.current {
+  background: #6571ce;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+}

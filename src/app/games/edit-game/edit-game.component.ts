@@ -1,50 +1,59 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
+import { DocumentData, AngularFirestore } from "@angular/fire/firestore";
 import {
-  AngularFirestoreCollection,
-  AngularFirestore,
-} from "@angular/fire/firestore";
-import {
+  FormGroup,
   FormBuilder,
   FormControl,
-  FormGroup,
   Validators,
 } from "@angular/forms";
 import { DateAdapter } from "@angular/material";
-import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/auth.service";
-import { Users } from "src/app/models/user-profile.model";
+import { Games } from "src/app/models/user-profile.model";
 
 @Component({
-  selector: "app-add-game",
-  templateUrl: "./add-game.component.html",
-  styleUrls: ["./add-game.component.scss"],
+  selector: "app-edit-game",
+  templateUrl: "./edit-game.component.html",
+  styleUrls: ["./edit-game.component.scss"],
 })
-export class AddGameComponent implements OnInit {
+export class EditGameComponent implements OnInit {
   formGroup: FormGroup;
   post: any = "";
-  addPermanant = false;
-  userCollection: AngularFirestoreCollection<Users>;
-  users: Observable<Users[]>;
+  gamesRef: DocumentData;
+  uid: string;
+  itemDoc: any;
+  item: any;
+  userForm: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private dateAdapter: DateAdapter<Date>,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private afs: AngularFirestore,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore
   ) {
     this.dateAdapter.setLocale("he-IL");
-    this.userCollection = afs.collection<any>("users", (ref) =>
-      ref.where("isPermanant", "==", "true")
-    );
-    this.users = this.userCollection.valueChanges();
+    this.uid = this.activatedRoute.snapshot.paramMap.get("id");
+    this.gamesRef = afs.collection("games");
   }
 
   ngOnInit() {
     this.createForm();
+
+    // get game data
+    this.itemDoc = this.afs.doc<Games>(`games/${this.uid}`);
+    this.item = this.itemDoc.valueChanges();
+    this.item.subscribe((it) => {
+      this.formGroup.patchValue({
+        numOfPlayers: it.numOfPlayers,
+        gameTime: it.gameTime,
+        date: new Date(it.date),
+        location: it.location,
+      });
+    });
   }
 
   createForm() {
@@ -73,28 +82,14 @@ export class AddGameComponent implements OnInit {
       return;
     }
 
-    let players: Users[];
     post.date = post.date.toLocaleDateString().slice(0, 10);
     this.post = post;
-
-    if (this.addPermanant) {
-      this.users.subscribe((list) => {
-        players = list;
-
-        this.authService.addIteminInCollection("games", {
-          ...this.post,
-          players: list,
-        });
-        this.back();
-      });
-    } else {
-      await this.authService.addIteminInCollection("games", this.post);
-      this.back();
-    }
-  }
-
-  selectionChanged(item) {
-    this.addPermanant = item.value;
+    await this.authService.updateIteminInCollection(
+      "games",
+      this.post,
+      this.uid
+    );
+    this.back();
   }
 
   back() {
