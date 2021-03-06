@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1614715781641,
+  "timestamp": 1615027068593,
   "index": "/football-app/index.html",
   "assetGroups": [
     {
@@ -14,8 +14,8 @@
         "/football-app/6-es5.8b1506bf0c0a551db0f4.js",
         "/football-app/favicon.ico",
         "/football-app/index.html",
-        "/football-app/main-es2015.686eb1cd1e056fc069ac.js",
-        "/football-app/main-es5.686eb1cd1e056fc069ac.js",
+        "/football-app/main-es2015.3b719cfa450ff566bc47.js",
+        "/football-app/main-es5.3b719cfa450ff566bc47.js",
         "/football-app/manifest.webmanifest",
         "/football-app/polyfills-es2015.ffa9bb4e015925544f91.js",
         "/football-app/polyfills-es5.0290b245fbcca09184ac.js",
@@ -105,9 +105,9 @@
     "/football-app/assets/profile-placeholder.jpg": "ca08188344fd6658acd817841b4f4427407265f0",
     "/football-app/assets/teams-list.jpg": "647e5e0cf24efa43c5e8c2715a8014046a74aecd",
     "/football-app/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/football-app/index.html": "666c6139fa997201758f1cb00e830a11da1d1814",
-    "/football-app/main-es2015.686eb1cd1e056fc069ac.js": "ac9cb220940073119ebfa50b44f1fc5d90e90df6",
-    "/football-app/main-es5.686eb1cd1e056fc069ac.js": "51a42869700e897f9a3a2f853f45fb07c6f149cb",
+    "/football-app/index.html": "2a43be2ecdfaa20a36414b3fc680f6e09f3b1ea4",
+    "/football-app/main-es2015.3b719cfa450ff566bc47.js": "4000bc0e7cfe78dbc361e888125ce12a1c39a9b2",
+    "/football-app/main-es5.3b719cfa450ff566bc47.js": "194bf1b33bb01121b68288fd2b6623c07cf25d0e",
     "/football-app/manifest.webmanifest": "0d17f54941153e09285c1be00b774dc46441fe16",
     "/football-app/polyfills-es2015.ffa9bb4e015925544f91.js": "79b2ff5ba292ae9e56f0b43982b9e76d9ddcf285",
     "/football-app/polyfills-es5.0290b245fbcca09184ac.js": "a7bfe75cfe39caaf5bc4c64b35dd9f1f0918a25f",

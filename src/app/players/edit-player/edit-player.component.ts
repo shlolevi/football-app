@@ -60,7 +60,7 @@ export class EditPlayerComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate([`players/list`]);
+    this.router.navigate([`/players/list`]);
   }
 
   onSubmit(userForm) {
@@ -69,7 +69,7 @@ export class EditPlayerComponent implements OnInit {
       {
         ...this.user,
         role: userForm.role,
-        level: userForm.level,
+        level: parseInt(userForm.level),
         isPermanant: this.permanant,
       },
       this.uid

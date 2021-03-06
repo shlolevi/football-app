@@ -97,7 +97,7 @@ export class AuthService implements OnInit {
     return !!this.afAuth.auth.currentUser;
   }
 
-  async CreateUserDocument() {
+  async CreateUserDocument(level?: number, role?: string) {
     // get the current user
     const user = this.afAuth.auth.currentUser;
 
@@ -106,8 +106,8 @@ export class AuthService implements OnInit {
       uid: user.uid,
       name: user.displayName,
       email: user.email,
-      role: "user",
-      level: 3,
+      role: role ? role : "user",
+      level: level ? level : 3,
     };
     // write to cloud firestore
     return this.afs.doc(`users/${user.uid}`).set(userProfile);
@@ -135,7 +135,6 @@ export class AuthService implements OnInit {
       ...{ players: [], waiting: [], teams: [] },
       ...payload,
     };
-    debugger;
     if (collection === "users") {
       this.usersRef.add(obj);
     } else {

@@ -21,3 +21,11 @@ export interface Games {
 }
 
 export interface Users {}
+
+export interface FinalTeams {
+  team1: any[];
+  team2: any[];
+  team3: any[];
+  team4: any[];
+  team5: any[];
+}

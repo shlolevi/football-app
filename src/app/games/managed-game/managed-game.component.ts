@@ -75,6 +75,7 @@ export class ManagedGameComponent implements OnInit {
     this.authService.getGameById(this.uid).subscribe((game) => {
       this.game = game.data();
 
+      // get day of the week
       let day = new Date(this.game.date).getDay();
       this.dayOfTheWeek = this.days[day];
 
@@ -148,7 +149,6 @@ export class ManagedGameComponent implements OnInit {
   }
 
   addPlayerToWaitingList() {
-    debugger;
     if (this.isAdmin && this.playerControl.value) {
       this.selectedUser = this.playerControl.value.uid;
     }

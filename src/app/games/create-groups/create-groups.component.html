@@ -57,6 +57,17 @@
 
 
   </form-->
+
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="createGroups()"
+          class="btn btn-primary button cta-button"
+        >
+          צור קבוצות
+        </button>
+      </div>
       <div class="groups">
         <!--mat-card class="inner-mat-card">קבוצה 1</mat-card-->
 
@@ -65,24 +76,15 @@
             <mat-expansion-panel-header>
               <mat-panel-title> קבוצה 1 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>שלומי</p>
-            <p>אלי</p>
-            <p>איציק</p>
-            <p>אוהד</p>
-            <p>עידן</p>
+            <p *ngFor="let member of finalTeams.team1">{{ member.name }}</p>
           </mat-expansion-panel>
         </mat-accordion>
-
         <mat-accordion>
           <mat-expansion-panel hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title> קבוצה 2 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>שלומי</p>
-            <p>אלי</p>
-            <p>איציק</p>
-            <p>אוהד</p>
-            <p>עידן</p>
+            <p *ngFor="let member of finalTeams.team2">{{ member.name }}</p>
           </mat-expansion-panel>
         </mat-accordion>
 
@@ -91,11 +93,7 @@
             <mat-expansion-panel-header>
               <mat-panel-title> קבוצה 3 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>שלומי</p>
-            <p>אלי</p>
-            <p>איציק</p>
-            <p>אוהד</p>
-            <p>עידן</p>
+            <p *ngFor="let member of finalTeams.team3">{{ member.name }}</p>
           </mat-expansion-panel>
         </mat-accordion>
 
@@ -104,11 +102,7 @@
             <mat-expansion-panel-header>
               <mat-panel-title> קבוצה 4 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>שלומי</p>
-            <p>אלי</p>
-            <p>איציק</p>
-            <p>אוהד</p>
-            <p>עידן</p>
+            <p *ngFor="let member of finalTeams.team4">{{ member.name }}</p>
           </mat-expansion-panel>
         </mat-accordion>
 
@@ -117,32 +111,9 @@
             <mat-expansion-panel-header>
               <mat-panel-title> קבוצה 5 </mat-panel-title>
             </mat-expansion-panel-header>
-            <p>שלומי</p>
-            <p>אלי</p>
-            <p>איציק</p>
-            <p>אוהד</p>
-            <p>עידן</p>
+            <p *ngFor="let member of finalTeams.team5">{{ member.name }}</p>
           </mat-expansion-panel>
         </mat-accordion>
-      </div>
-
-      <div class="form-element btns">
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="playingOrder()"
-          class="btn btn-primary button cta-button"
-        >
-          מי משחק ראשון ...
-        </button>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="back()"
-          class="btn btn-primary button cta-button"
-        >
-          חזור
-        </button>
       </div>
 
       <div class="playingOrderContainer">
@@ -151,12 +122,45 @@
           *ngIf="displayPlayingOrder"
         >
           <h4>הקבוצות ישחקו לפי הסדר הבא</h4>
-          <p>4</p>
-          <p>3</p>
-          <p>2</p>
-          <p>1</p>
-          <p>5</p>
+          <span> {{ playingf }}#</span>
+          נגד
+          <span>{{ playings }}#</span>
+          <br />
+          <b>מזמין ראשון</b>
+          <p>{{ orderf ? orderf : "אין " }}#</p>
+
+          <b>מזמין שני</b>
+          <p>{{ orders ? orders : "אין " }}#</p>
+
+          <b>מזמין שלישי</b>
+          <p>{{ ordert ? ordert : "אין " }}#</p>
         </mat-card>
+      </div>
+      <div class="form-element btns">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="serPlayingOrder()"
+          class="btn btn-primary button cta-button"
+        >
+          מי משחק ראשון ...
+        </button>
+        <!--button
+          mat-raised-button
+          color="primary"
+          (click)="openMap()"
+          class="btn btn-primary button cta-button"
+        
+          מפה
+        </button-->
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="back()"
+          class="btn btn-primary button cta-button"
+        >
+          חזור
+        </button>
       </div>
     </mat-card-content>
   </mat-card>
