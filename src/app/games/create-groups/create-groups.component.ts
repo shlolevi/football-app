@@ -58,6 +58,20 @@ export class CreateGroupsComponent implements OnInit {
     this.authService.getGameById(this.uid).subscribe(async (game) => {
       this.gameData = game.data();
       this.finalTeams = this.gameData.teams;
+      this.playingOrder = this.gameData.playingOrder;
+
+      if (this.playingOrder) {
+        try {
+          this.displayPlayingOrder = true;
+
+          this.playingf = this.playingOrder[0] + 1;
+          this.playings = this.playingOrder[1] + 1;
+          this.orderf = this.playingOrder[2] + 1;
+          this.orders = this.playingOrder[3] + 1;
+          this.ordert = this.playingOrder[4] + 1;
+        } catch (e) {}
+      }
+
       await this.getPlayers();
 
       // number of players / 5
@@ -192,7 +206,11 @@ export class CreateGroupsComponent implements OnInit {
     this.orders = order[3] + 1;
     this.ordert = order[4] + 1;
 
-    this.displayPlayingOrder = !this.displayPlayingOrder;
+    this.displayPlayingOrder = true;
+    const payload = { ...this.gameData, playingOrder: order };
+    // write to db
+    this.authService.updateIteminInCollection("games", payload, this.uid);
+
     //   debugger;
     //   this.players.sort(function (a, b) {
     //     return a.level - b.level;

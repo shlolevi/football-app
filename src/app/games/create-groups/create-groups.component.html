@@ -122,9 +122,9 @@
           *ngIf="displayPlayingOrder"
         >
           <h4>הקבוצות ישחקו לפי הסדר הבא</h4>
-          <span> {{ playingf }}#</span>
+          <p>{{ playingf ? playingf : "" }}#</p>
           נגד
-          <span>{{ playings }}#</span>
+          <p>{{ playings ? playings : "" }}#</p>
           <br />
           <b>מזמין ראשון</b>
           <p>{{ orderf ? orderf : "אין " }}#</p>

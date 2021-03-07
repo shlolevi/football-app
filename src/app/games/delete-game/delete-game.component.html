@@ -31,7 +31,7 @@
           <div class="cta">
             <mat-icon
               (click)="navToEditGame(game.id)"
-              *ngIf="user.role === 'Admin'"
+              *ngIf="user?.role === 'Admin' || user?.role === 'Manager'"
               >edit</mat-icon
             >
           </div>

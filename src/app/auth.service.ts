@@ -8,6 +8,7 @@ import {
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
 import { Observable, of } from "rxjs";
+import { map } from "rxjs/operators";
 import { UserProfile, Users, Games } from "./models/user-profile.model";
 
 @Injectable({
@@ -61,7 +62,7 @@ export class AuthService implements OnInit {
   setUserUid(uid: string) {
     localStorage.setItem("userId", uid);
   }
-  get UserUid() {
+  get UserUid(): any {
     return localStorage.getItem("userId");
   }
   setLoginToken(value: boolean) {
@@ -95,6 +96,12 @@ export class AuthService implements OnInit {
 
   isLoggedIn() {
     return !!this.afAuth.auth.currentUser;
+  }
+
+  isAdmin() {
+    return this.getUserById(this.UserUidObj.uid).pipe(
+      map((item) => item.data().role === "Admin")
+    );
   }
 
   async CreateUserDocument(level?: number, role?: string) {

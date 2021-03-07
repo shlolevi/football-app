@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1615027068593,
+  "timestamp": 1615133132835,
   "index": "/football-app/index.html",
   "assetGroups": [
     {
@@ -10,17 +10,17 @@
       "urls": [
         "/football-app/5-es2015.90e64e1afc4a293a7464.js",
         "/football-app/5-es5.90e64e1afc4a293a7464.js",
-        "/football-app/6-es2015.8b1506bf0c0a551db0f4.js",
-        "/football-app/6-es5.8b1506bf0c0a551db0f4.js",
+        "/football-app/6-es2015.5a922e05578f154eea95.js",
+        "/football-app/6-es5.5a922e05578f154eea95.js",
         "/football-app/favicon.ico",
         "/football-app/index.html",
-        "/football-app/main-es2015.3b719cfa450ff566bc47.js",
-        "/football-app/main-es5.3b719cfa450ff566bc47.js",
+        "/football-app/main-es2015.51c0ae441858f3826dfb.js",
+        "/football-app/main-es5.51c0ae441858f3826dfb.js",
         "/football-app/manifest.webmanifest",
         "/football-app/polyfills-es2015.ffa9bb4e015925544f91.js",
         "/football-app/polyfills-es5.0290b245fbcca09184ac.js",
-        "/football-app/runtime-es2015.033193209debd9867359.js",
-        "/football-app/runtime-es5.033193209debd9867359.js",
+        "/football-app/runtime-es2015.b281ed2a94e27322a37f.js",
+        "/football-app/runtime-es5.b281ed2a94e27322a37f.js",
         "/football-app/styles.f59e1fa4f998d6f5db61.css"
       ],
       "patterns": []
@@ -70,8 +70,8 @@
   "hashTable": {
     "/football-app/5-es2015.90e64e1afc4a293a7464.js": "9348e5699c16e897e12bd75a0c779963fb6a818a",
     "/football-app/5-es5.90e64e1afc4a293a7464.js": "9348e5699c16e897e12bd75a0c779963fb6a818a",
-    "/football-app/6-es2015.8b1506bf0c0a551db0f4.js": "bb02108e472f30379f6ddd2ebdb03f16076ced1e",
-    "/football-app/6-es5.8b1506bf0c0a551db0f4.js": "bb02108e472f30379f6ddd2ebdb03f16076ced1e",
+    "/football-app/6-es2015.5a922e05578f154eea95.js": "a365e3b9e0bee027f65acc84bd52245be4cad6b7",
+    "/football-app/6-es5.5a922e05578f154eea95.js": "a365e3b9e0bee027f65acc84bd52245be4cad6b7",
     "/football-app/assets/add-player.png": "05472efb83d0cf0bebd042c7450fd0d1b8a33591",
     "/football-app/assets/ball.jpg": "f6cf598b1a9a0949baef60a4457af46ef42633da",
     "/football-app/assets/barcelona-players.jpg": "d64e1bc2ddf366731fc3cc3349cbc88d37ca7674",
@@ -105,14 +105,14 @@
     "/football-app/assets/profile-placeholder.jpg": "ca08188344fd6658acd817841b4f4427407265f0",
     "/football-app/assets/teams-list.jpg": "647e5e0cf24efa43c5e8c2715a8014046a74aecd",
     "/football-app/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/football-app/index.html": "2a43be2ecdfaa20a36414b3fc680f6e09f3b1ea4",
-    "/football-app/main-es2015.3b719cfa450ff566bc47.js": "4000bc0e7cfe78dbc361e888125ce12a1c39a9b2",
-    "/football-app/main-es5.3b719cfa450ff566bc47.js": "194bf1b33bb01121b68288fd2b6623c07cf25d0e",
+    "/football-app/index.html": "b2496193a7d2b5ab6a29229e2700bbc061cabe71",
+    "/football-app/main-es2015.51c0ae441858f3826dfb.js": "e1a4097ab2fee489bfb374f223d7d9f59228d70d",
+    "/football-app/main-es5.51c0ae441858f3826dfb.js": "b6bada62e23444904783345bb46f4101a4609d9d",
     "/football-app/manifest.webmanifest": "0d17f54941153e09285c1be00b774dc46441fe16",
     "/football-app/polyfills-es2015.ffa9bb4e015925544f91.js": "79b2ff5ba292ae9e56f0b43982b9e76d9ddcf285",
     "/football-app/polyfills-es5.0290b245fbcca09184ac.js": "a7bfe75cfe39caaf5bc4c64b35dd9f1f0918a25f",
-    "/football-app/runtime-es2015.033193209debd9867359.js": "9f196350d086df04e26dfddbd0b903c086503786",
-    "/football-app/runtime-es5.033193209debd9867359.js": "2dccc7cde026aa7f8d7ea40f322f1ecd186528b4",
+    "/football-app/runtime-es2015.b281ed2a94e27322a37f.js": "cbe878ec7287302cae2ffdff1080c644d8d9b3be",
+    "/football-app/runtime-es5.b281ed2a94e27322a37f.js": "06e8fcaf71fe90d74a7bc2c49e049224c0ba50b9",
     "/football-app/styles.f59e1fa4f998d6f5db61.css": "fe11318559817288a13a39a2ac93e790152ac27b"
   },
   "navigationUrls": [
