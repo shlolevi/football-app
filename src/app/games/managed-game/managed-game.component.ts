@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import {
   AngularFirestore,
@@ -13,8 +13,8 @@ import {
 } from "@angular/forms";
 import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Route, Router } from "@angular/router";
-import { Observable } from "rxjs";
-import { startWith, map } from "rxjs/operators";
+import { Observable, Subject, Subscription } from "rxjs";
+import { startWith, map, takeUntil } from "rxjs/operators";
 import { AuthService } from "src/app/auth.service";
 import { Games, Users } from "src/app/models/user-profile.model";
 import { DialogBox } from "src/app/shared/dialog-box.component";
@@ -29,7 +29,7 @@ export enum Lists {
   templateUrl: "./managed-game.component.html",
   styleUrls: ["./managed-game.component.scss"],
 })
-export class ManagedGameComponent implements OnInit {
+export class ManagedGameComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   post: any = "";
   user: any;
@@ -51,6 +51,9 @@ export class ManagedGameComponent implements OnInit {
     "https://ul.waze.com/ul?ll=31.78169099%2C34.71106374&navigate=yes&zoom=17&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location";
 
   days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+  private userDestroy$ = new Subject();
+  private gameDestroy$ = new Subject();
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -72,22 +75,28 @@ export class ManagedGameComponent implements OnInit {
     this.createForm();
     this.uid = this.activatedRoute.snapshot.paramMap.get("id");
     // get game data
-    this.authService.getGameById(this.uid).subscribe((game) => {
-      this.game = game.data();
+    this.authService
+      .getGameById(this.uid)
+      .pipe(takeUntil(this.gameDestroy$))
+      .subscribe((game) => {
+        this.game = game.data();
 
-      // get day of the week
-      let day = new Date(this.game.date).getDay();
-      this.dayOfTheWeek = this.days[day];
+        // get day of the week
+        let day = new Date(this.game.date).getDay();
+        this.dayOfTheWeek = this.days[day];
 
-      // get loggedin user
-      this.user = this.authService.UserUidObj;
-      this.selectedUser = this.user.uid;
-      this.isAdmin = this.user.role == "Admin";
-      // get user list and assign default user
-      this.users.subscribe((items) => {
-        this.options.push(...items);
+        // get loggedin user
+        this.user = this.authService.UserUidObj;
+        this.selectedUser = this.user.uid;
+        this.isAdmin = this.user.role == "Admin";
+        // get user list and assign default user
+        this.users.pipe(takeUntil(this.userDestroy$)).subscribe((items) => {
+          this.options.push(...items);
+        });
       });
-    });
+
+    // this.groups.push(gameReq);
+    // this.groups.push(this.userReq);
 
     // this.filteredOptions = this.playerControl.valueChanges.pipe(
     //   startWith(""),
@@ -259,5 +268,15 @@ export class ManagedGameComponent implements OnInit {
 
   back() {
     this.router.navigate(["/games/delete"]);
+  }
+  ngOnDestroy(): void {
+    if (this.gameDestroy$) {
+      this.gameDestroy$.next();
+      this.gameDestroy$.unsubscribe();
+    }
+    if (this.userDestroy$) {
+      this.userDestroy$.next();
+      this.userDestroy$.unsubscribe();
+    }
   }
 }

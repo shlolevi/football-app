@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { ManagedGameComponent } from "./managed-game/managed-game.component";
 import { CreateGroupsComponent } from "./create-groups/create-groups.component";
-import { EditGameComponent } from './edit-game/edit-game.component';
+import { EditGameComponent } from "./edit-game/edit-game.component";
 
 @NgModule({
   declarations: [

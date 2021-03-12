@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { DocumentData, AngularFirestore } from "@angular/fire/firestore";
 import {
@@ -9,6 +9,8 @@ import {
 } from "@angular/forms";
 import { DateAdapter } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 import { AuthService } from "src/app/auth.service";
 import { Games } from "src/app/models/user-profile.model";
 
@@ -17,7 +19,7 @@ import { Games } from "src/app/models/user-profile.model";
   templateUrl: "./edit-game.component.html",
   styleUrls: ["./edit-game.component.scss"],
 })
-export class EditGameComponent implements OnInit {
+export class EditGameComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   post: any = "";
   gamesRef: DocumentData;
@@ -25,6 +27,8 @@ export class EditGameComponent implements OnInit {
   itemDoc: any;
   item: any;
   userForm: any;
+  cleanList: any;
+  private componentDestroy$ = new Subject();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,7 +50,7 @@ export class EditGameComponent implements OnInit {
     // get game data
     this.itemDoc = this.afs.doc<Games>(`games/${this.uid}`);
     this.item = this.itemDoc.valueChanges();
-    this.item.subscribe((it) => {
+    this.item.pipe(takeUntil(this.componentDestroy$)).subscribe((it) => {
       this.formGroup.patchValue({
         numOfPlayers: it.numOfPlayers,
         gameTime: it.gameTime,
@@ -82,8 +86,12 @@ export class EditGameComponent implements OnInit {
       return;
     }
 
-    post.date = post.date.toLocaleDateString().slice(0, 10);
+    post.date = new Date(post.date).getTime();
+    // post.date = post.date.toLocaleDateString().slice(0, 10);
     this.post = post;
+    if (this.cleanList) {
+      this.post = { ...this.post, players: [] };
+    }
     await this.authService.updateIteminInCollection(
       "games",
       this.post,
@@ -92,7 +100,17 @@ export class EditGameComponent implements OnInit {
     this.back();
   }
 
+  selectionChanged(item) {
+    this.cleanList = item.value;
+  }
+
   back() {
     this.router.navigate(["/games/delete"]);
+  }
+  ngOnDestroy(): void {
+    if (this.componentDestroy$) {
+      this.componentDestroy$.next();
+      this.componentDestroy$.unsubscribe();
+    }
   }
 }

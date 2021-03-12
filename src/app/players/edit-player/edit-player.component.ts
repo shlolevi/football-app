@@ -3,7 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "firebase";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 import { AuthService } from "src/app/auth.service";
 
 @Component({
@@ -15,6 +16,7 @@ export class EditPlayerComponent implements OnInit {
   uid;
   user;
   formGroup: FormGroup;
+  private componentDestroy$ = new Subject();
 
   userRoles: any[] = [
     { value: "Admin", viewValue: "מנהל" },
@@ -49,14 +51,17 @@ export class EditPlayerComponent implements OnInit {
       level: [null, Validators.required],
     });
 
-    this.authService.getUserById(this.uid).subscribe((user) => {
-      this.user = user.data();
-      this.formGroup.patchValue({
-        role: this.user.role,
-        level: this.user.level,
+    this.authService
+      .getUserById(this.uid)
+      .pipe(takeUntil(this.componentDestroy$))
+      .subscribe((user) => {
+        this.user = user.data();
+        this.formGroup.patchValue({
+          role: this.user.role,
+          level: this.user.level,
+        });
+        this.permanant = this.user.isPermanant === "true" ? true : false;
       });
-      this.permanant = this.user.isPermanant === "true" ? true : false;
-    });
   }
 
   back() {
@@ -78,5 +83,12 @@ export class EditPlayerComponent implements OnInit {
   }
   selectionChanged(item) {
     this.permanant = item.value;
+  }
+
+  ngOnDestroy(): void {
+    if (this.componentDestroy$) {
+      this.componentDestroy$.next();
+      this.componentDestroy$.unsubscribe();
+    }
   }
 }

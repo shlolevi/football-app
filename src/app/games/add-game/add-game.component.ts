@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import {
   AngularFirestoreCollection,
@@ -12,7 +12,8 @@ import {
 } from "@angular/forms";
 import { DateAdapter } from "@angular/material";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 import { AuthService } from "src/app/auth.service";
 import { Users } from "src/app/models/user-profile.model";
 
@@ -21,12 +22,13 @@ import { Users } from "src/app/models/user-profile.model";
   templateUrl: "./add-game.component.html",
   styleUrls: ["./add-game.component.scss"],
 })
-export class AddGameComponent implements OnInit {
+export class AddGameComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   post: any = "";
   addPermanant = false;
   userCollection: AngularFirestoreCollection<Users>;
   users: Observable<Users[]>;
+  private componentDestroy$ = new Subject();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -74,11 +76,12 @@ export class AddGameComponent implements OnInit {
     }
 
     let players: Users[];
-    post.date = post.date.toLocaleDateString().slice(0, 10);
+    post.date = new Date(post.date).getTime();
+    //     post.date = post.date.toLocaleDateString().slice(0, 10);
     this.post = post;
 
     if (this.addPermanant) {
-      this.users.subscribe((list) => {
+      this.users.pipe(takeUntil(this.componentDestroy$)).subscribe((list) => {
         players = list;
 
         this.authService.addIteminInCollection("games", {
@@ -99,5 +102,11 @@ export class AddGameComponent implements OnInit {
 
   back() {
     this.router.navigate(["/games/delete"]);
+  }
+  ngOnDestroy(): void {
+    if (this.componentDestroy$) {
+      this.componentDestroy$.next();
+      this.componentDestroy$.unsubscribe();
+    }
   }
 }

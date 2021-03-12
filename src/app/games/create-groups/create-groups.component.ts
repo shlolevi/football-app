@@ -1,19 +1,23 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { AngularFirestore, DocumentData } from "@angular/fire/firestore";
 import { FormGroup } from "@angular/forms";
+import { SELECT_ITEM_HEIGHT_EM } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { User } from "firebase";
 import { BrowserStack } from "protractor/built/driverProviders";
-import { Observable } from "rxjs";
+import { Observable, Subject, Subscription } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 import { AuthService } from "src/app/auth.service";
 import { FinalTeams } from "src/app/models/user-profile.model";
 
+// @UntilDestroy()
 @Component({
   selector: "app-create-groups",
   templateUrl: "./create-groups.component.html",
   styleUrls: ["./create-groups.component.scss"],
 })
-export class CreateGroupsComponent implements OnInit {
+export class CreateGroupsComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   post: any = "";
   displayPlayingOrder = false;
@@ -41,6 +45,10 @@ export class CreateGroupsComponent implements OnInit {
   orders: number;
   ordert: number;
 
+  private componentDestroy$ = new Subject();
+  subscriptions: Subscription[] = [];
+  groups: Subscription;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -55,37 +63,44 @@ export class CreateGroupsComponent implements OnInit {
   async ngOnInit() {
     this.uid = this.route.snapshot.paramMap.get("id");
     // get game data
-    this.authService.getGameById(this.uid).subscribe(async (game) => {
-      this.gameData = game.data();
-      this.finalTeams = this.gameData.teams;
-      this.playingOrder = this.gameData.playingOrder;
+    const req = this.authService
+      .getGameById(this.uid)
+      .pipe(takeUntil(this.componentDestroy$))
+      // .pipe(untilDestroyed(this)) // destroyed decorator option
+      .subscribe(async (game) => {
+        this.gameData = game.data();
+        this.finalTeams = this.gameData.teams;
+        this.playingOrder = this.gameData.playingOrder;
 
-      if (this.playingOrder) {
-        try {
-          this.displayPlayingOrder = true;
+        if (this.playingOrder) {
+          try {
+            this.displayPlayingOrder = true;
 
-          this.playingf = this.playingOrder[0] + 1;
-          this.playings = this.playingOrder[1] + 1;
-          this.orderf = this.playingOrder[2] + 1;
-          this.orders = this.playingOrder[3] + 1;
-          this.ordert = this.playingOrder[4] + 1;
-        } catch (e) {}
-      }
+            this.playingf = this.playingOrder[0] + 1;
+            this.playings = this.playingOrder[1] + 1;
+            this.orderf = this.playingOrder[2] + 1;
+            this.orders = this.playingOrder[3] + 1;
+            this.ordert = this.playingOrder[4] + 1;
+          } catch (e) {}
+        }
 
-      await this.getPlayers();
+        await this.getPlayers();
 
-      // number of players / 5
-      this.teamsNumber = this.gameData.players.length / 5;
-    });
+        // number of players / 5
+        this.teamsNumber = this.gameData.players.length / 5;
+      });
+
+    // this.groups.push(req);
   }
 
   async getPlayers() {
     // get player level
     this.gameData.players.forEach((elem: User) => {
-      this.authService.getUserById(elem.uid).subscribe((player) => {
+      let subs = this.authService.getUserById(elem.uid).subscribe((player) => {
         const tmpElem = { ...elem, level: player.data().level };
         this.players.push(tmpElem);
       });
+      this.subscriptions.push(subs);
     });
   }
 
@@ -229,4 +244,19 @@ export class CreateGroupsComponent implements OnInit {
   //   //   "https://www.google.com/maps/search/?api=1&query=Public School Shaked, Rekhav'am ha-Melekh St 15, Ashdod"
   //   // );
   // }
+
+  ngOnDestroy(): void {
+    if (this.componentDestroy$) {
+      this.componentDestroy$.next();
+      this.componentDestroy$.unsubscribe();
+    }
+
+    // if(this.groups){
+    //   this.groups.unsubscribe();
+    // }
+
+    this.subscriptions.forEach((item) => {
+      item.unsubscribe();
+    });
+  }
 }

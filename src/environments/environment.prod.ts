@@ -8,6 +8,6 @@ export const environment = {
     storageBucket: "football-4a884.appspot.com",
     messagingSenderId: "955816259519",
     appId: "1:955816259519:web:98e4f84a8da289a3517b0a",
-    measurementId: "G-62NM733ZH9"
-  }
+    measurementId: "G-62NM733ZH9",
+  },
 };

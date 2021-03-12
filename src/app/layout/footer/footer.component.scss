@@ -1,5 +1,11 @@
-:host ::ng-deep{
-    mat-toolbar {
-        justify-content: center;
-    }
+:host ::ng-deep {
+  mat-toolbar {
+    justify-content: center;
+  }
+}
+
+span {
+  position: absolute;
+  left: 10px;
+  font-size: 12px;
 }

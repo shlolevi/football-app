@@ -8,7 +8,8 @@ import { AngularFireStorage } from "@angular/fire/storage";
 import { FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 import { AuthService } from "src/app/auth.service";
 import { DialogBox } from "src/app/shared/dialog-box.component";
 
@@ -25,6 +26,7 @@ export class PlayerListComponent implements OnInit {
   user: any;
   downloadedUrl: Observable<any>;
   userCollection1: any;
+  private componentDestroy$ = new Subject();
 
   constructor(
     private router: Router,
@@ -63,11 +65,14 @@ export class PlayerListComponent implements OnInit {
       data: { user: userId, question: "אתה בטוח שאתה רוצה למחוק ?" },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.deletePlayer(result);
-      }
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(takeUntil(this.componentDestroy$))
+      .subscribe((result) => {
+        if (result) {
+          this.deletePlayer(result);
+        }
+      });
   }
 
   deletePlayer(id) {
@@ -87,6 +92,13 @@ export class PlayerListComponent implements OnInit {
 
   editPlayer(player) {
     this.router.navigate([`players/edit/`, player.uid]);
+  }
+
+  ngOnDestroy(): void {
+    if (this.componentDestroy$) {
+      this.componentDestroy$.next();
+      this.componentDestroy$.unsubscribe();
+    }
   }
 }
 

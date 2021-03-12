@@ -64,7 +64,11 @@ MIT
 
 @angular/fire/auth-guard
 
+@angular/fire/database
+
 @angular/fire/firestore
+
+@angular/fire/messaging
 
 @angular/fire/storage
 
@@ -411,7 +415,11 @@ firebase/app
 
 firebase/auth
 
+firebase/database
+
 firebase/firestore
+
+firebase/messaging
 
 firebase/storage
 
