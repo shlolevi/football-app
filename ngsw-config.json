@@ -33,7 +33,7 @@
   "dataGroups":
   [
     {
-      "name": "netsheet",
+      "name": "firebase",
       "urls": ["https://firestore.googleapis.com/*"],
       "cacheConfig": {
         "maxSize": 0,

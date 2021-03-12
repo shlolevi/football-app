@@ -59,8 +59,7 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
-    ServiceWorkerModule.register("combined-sw.js", {
-      // ServiceWorkerModule.register("ngsw-worker.js", {
+    ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
       registrationStrategy: "registerImmediately",
     }),
