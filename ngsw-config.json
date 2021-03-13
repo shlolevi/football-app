@@ -29,17 +29,5 @@
         ]
       }
     }
-  ],
-  "dataGroups":
-  [
-    {
-      "name": "firebase",
-      "urls": ["https://firestore.googleapis.com/*"],
-      "cacheConfig": {
-        "maxSize": 0,
-        "maxAge": "0u",
-        "strategy": "freshness"
-      }
-    }
   ]
 }

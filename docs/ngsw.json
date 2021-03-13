@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1615555166263,
+  "timestamp": 1615632513748,
   "appData": {
     "version": "1.0.0",
     "changelog": "Added better resource caching"
@@ -20,8 +20,8 @@
         "/football-app/7-es5.b8edad50a706b8c34a5e.js",
         "/football-app/favicon.ico",
         "/football-app/index.html",
-        "/football-app/main-es2015.f84bf30bd2cb7d4e2e87.js",
-        "/football-app/main-es5.f84bf30bd2cb7d4e2e87.js",
+        "/football-app/main-es2015.96c3763a497369d66862.js",
+        "/football-app/main-es5.96c3763a497369d66862.js",
         "/football-app/manifest.webmanifest",
         "/football-app/polyfills-es2015.ffa9bb4e015925544f91.js",
         "/football-app/polyfills-es5.0290b245fbcca09184ac.js",
@@ -72,18 +72,7 @@
       "patterns": []
     }
   ],
-  "dataGroups": [
-    {
-      "name": "firebase",
-      "patterns": [
-        "https:\\/\\/firestore\\.googleapis\\.com\\/[^/]*"
-      ],
-      "strategy": "freshness",
-      "maxSize": 0,
-      "maxAge": 0,
-      "version": 1
-    }
-  ],
+  "dataGroups": [],
   "hashTable": {
     "/football-app/5-es2015.90e64e1afc4a293a7464.js": "9348e5699c16e897e12bd75a0c779963fb6a818a",
     "/football-app/5-es5.90e64e1afc4a293a7464.js": "9348e5699c16e897e12bd75a0c779963fb6a818a",
@@ -124,9 +113,9 @@
     "/football-app/assets/profile-placeholder.jpg": "ca08188344fd6658acd817841b4f4427407265f0",
     "/football-app/assets/teams-list.jpg": "647e5e0cf24efa43c5e8c2715a8014046a74aecd",
     "/football-app/favicon.ico": "03e6a13711e4612ac363830f468ee8eb9ab0e306",
-    "/football-app/index.html": "7f01bbaf12d4ff2ef4973dc2f6dcf9c6833241a7",
-    "/football-app/main-es2015.f84bf30bd2cb7d4e2e87.js": "b49ba96ee1e3522601ec1cc68243c9977d91be61",
-    "/football-app/main-es5.f84bf30bd2cb7d4e2e87.js": "bd6d6ffd2786d23c6b5239625fe1c469832c9108",
+    "/football-app/index.html": "ece80287547b71bbfba4679141bb32fc4a76437b",
+    "/football-app/main-es2015.96c3763a497369d66862.js": "8b4d4cdf9258b0d088c72b809ff37625ef5a3a43",
+    "/football-app/main-es5.96c3763a497369d66862.js": "19ac522b5a4c31a466ddfc960882587b84b34313",
     "/football-app/manifest.webmanifest": "d530b0cfb045c3404b0eb994999caf169433a0ba",
     "/football-app/polyfills-es2015.ffa9bb4e015925544f91.js": "79b2ff5ba292ae9e56f0b43982b9e76d9ddcf285",
     "/football-app/polyfills-es5.0290b245fbcca09184ac.js": "a7bfe75cfe39caaf5bc4c64b35dd9f1f0918a25f",
